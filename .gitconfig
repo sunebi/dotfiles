@@ -1,0 +1,19 @@
+[user]
+	email = sunebi@maneko.group
+	name = Sunebi
+
+[core]
+	editor = code
+	autocrlf = input
+
+[init]
+	defaultBranch = main
+
+[push]
+	autoSetupRemote = true
+
+[url "ssh://git@github.com/"]
+	insteadOf = https://github.com/
+
+[url "ssh://git@gitlab.com/"]
+	insteadOf = https://gitlab.com/
