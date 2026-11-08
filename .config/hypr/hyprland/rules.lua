@@ -18,25 +18,14 @@ hl.window_rule({
   no_focus = true,
 })
 
-hl.window_rule({
-  name = "move-hyprland-run",
-  match = { class = "hyprland-run" },
-  move = "20 monitor_h-120",
-  float = true,
-})
-
+-- Pin workspaces to monitors so they do not swap when the connection order changes
 hl.workspace_rule({ workspace = "1", monitor = "DP-2", default = true, persistent = true })
 hl.workspace_rule({ workspace = "2", monitor = "DP-1", default = true, persistent = true })
 
 hl.layer_rule({
-  name = "vicinae-blur",
+  name = "vicinae",
   match = { namespace = "vicinae" },
   blur = true,
   ignore_alpha = 0,
-})
-
-hl.layer_rule({
-  name = "vicinae-no-animation",
-  match = { namespace = "vicinae" },
   no_anim = true,
 })
