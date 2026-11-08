@@ -1,0 +1,5 @@
+hl.on("hyprland.start", function()
+  hl.exec_cmd("awww-daemon")
+  hl.exec_cmd("qs -c sunebi")
+  hl.exec_cmd("vicinae server")
+end)

@@ -1,0 +1,10 @@
+-- Order matters: env and monitors first, config before rules and binds, autostart last
+require("hyprland.env")
+require("hyprland.monitors")
+require("hyprland.config")
+require("hyprland.layout")
+require("hyprland.animations")
+require("hyprland.input")
+require("hyprland.binds")
+require("hyprland.rules")
+require("hyprland.autostart")
