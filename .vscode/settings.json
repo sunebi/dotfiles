@@ -1,5 +1,17 @@
 {
+  "editor.formatOnSave": true,
+
+  "[qml]": {
+    "editor.defaultFormatter": "theqtcompany.qt-qml"
+  },
+
+  "qt-qml.qmlls.customExePath": "/usr/lib/qt6/bin/qmlls",
+  "qt-qml.qmlls.useQmlImportPathEnvVar": true,
+  "qt-core.additionalQtPaths": [
+    "/usr/lib/qt6/bin/qmake6"
+  ],
+
   "Lua.workspace.library": [
     "/usr/share/hypr/stubs"
-  ],
+  ]
 }

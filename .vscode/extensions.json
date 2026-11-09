@@ -1,0 +1,8 @@
+{
+  "recommendations": [
+    "EditorConfig.EditorConfig",
+    "theqtcompany.qt-qml",
+    "theqtcompany.qt-core",
+    "sumneko.lua"
+  ]
+}
