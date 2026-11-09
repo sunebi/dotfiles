@@ -1,35 +1,55 @@
-local mainMod = "SUPER"
+local keys = require("shared.keys")
+local apps = require("shared.apps")
 
-hl.bind(mainMod .. " + Q", hl.dsp.exec_cmd("kitty"))
-hl.bind(mainMod .. " + E", hl.dsp.exec_cmd("dolphin"))
-hl.bind(mainMod .. " + Space", hl.dsp.exec_cmd("vicinae toggle"))
-hl.bind(
-  mainMod .. " + M",
+-- Flags
+local locked = { locked = true }
+local lockedRepeating = { locked = true, repeating = true }
+local mouse = { mouse = true }
+
+-- Settings
+local volumeMax = 100 -- percent
+
+local function bind(chords, action, opts)
+  for _, chord in ipairs(type(chords) == "table" and chords or { chords }) do
+    hl.bind(chord, action, opts)
+  end
+end
+
+-- Launcher
+bind(keys.launcher, hl.dsp.exec_cmd(apps.launcher))
+bind(keys.clipboard, hl.dsp.exec_cmd(apps.clipboard))
+
+-- Apps
+bind(keys.terminal, hl.dsp.exec_cmd(apps.terminal))
+bind(keys.fileManager, hl.dsp.exec_cmd(apps.fileManager))
+bind(keys.browser, hl.dsp.exec_cmd(apps.browser))
+bind(keys.editor, hl.dsp.exec_cmd(apps.editor))
+bind(keys.volumeMixer, hl.dsp.exec_cmd(apps.volumeMixer))
+
+-- Session
+bind(
+  keys.exit,
   hl.dsp.exec_cmd("command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch 'hl.dsp.exit()'")
 )
 
-hl.bind(mainMod .. " + C", hl.dsp.window.close())
-hl.bind(mainMod .. " + V", hl.dsp.window.float({ action = "toggle" }))
-hl.bind(mainMod .. " + P", hl.dsp.window.pseudo())
-hl.bind(mainMod .. " + J", hl.dsp.layout("togglesplit")) -- dwindle only
+-- Windows
+bind(keys.closeWindow, hl.dsp.window.close())
+bind(keys.toggleFloat, hl.dsp.window.float({ action = "toggle" }))
+bind(keys.togglePseudo, hl.dsp.window.pseudo())
+bind(keys.toggleSplit, hl.dsp.layout("togglesplit")) -- dwindle only
 
-hl.bind(mainMod .. " + left", hl.dsp.focus({ direction = "left" }))
-hl.bind(mainMod .. " + right", hl.dsp.focus({ direction = "right" }))
-hl.bind(mainMod .. " + up", hl.dsp.focus({ direction = "up" }))
-hl.bind(mainMod .. " + down", hl.dsp.focus({ direction = "down" }))
+-- Window focus
+bind(keys.focusLeft, hl.dsp.focus({ direction = "left" }))
+bind(keys.focusRight, hl.dsp.focus({ direction = "right" }))
+bind(keys.focusUp, hl.dsp.focus({ direction = "up" }))
+bind(keys.focusDown, hl.dsp.focus({ direction = "down" }))
 
-for i = 1, 10 do
-  local key = i % 10 -- workspace 10 sits on key 0
-  hl.bind(mainMod .. " + " .. key, hl.dsp.focus({ workspace = i }))
-  hl.bind(mainMod .. " + SHIFT + " .. key, hl.dsp.window.move({ workspace = i }))
-end
+-- Window mouse
+bind(keys.moveWindow, hl.dsp.window.drag(), mouse)
+bind(keys.resizeWindow, hl.dsp.window.resize(), mouse)
 
-hl.bind(mainMod .. " + S", hl.dsp.workspace.toggle_special("magic"))
-
-hl.bind(mainMod .. " + SHIFT + S", hl.dsp.exec_cmd("hyprshot -m region -z"))
-hl.bind("Print", hl.dsp.exec_cmd("hyprshot -m region -z"))
-
--- "r+1" has no upper bound, so stop at the last workspace the bar shows
+-- Workspaces
+-- The bar shows workspaces 1-9, and "r+1" has no upper bound, so stop at the last one
 local firstWorkspace = 1
 local lastWorkspace = 9
 
@@ -43,20 +63,36 @@ local function scrollWorkspace(step)
   end
 end
 
-hl.bind(mainMod .. " + mouse_up", scrollWorkspace(1))
-hl.bind(mainMod .. " + mouse_down", scrollWorkspace(-1))
+for i = firstWorkspace, lastWorkspace do
+  bind(keys.workspaceFocus .. " + " .. i, hl.dsp.focus({ workspace = i }))
+  bind(keys.workspaceMove .. " + " .. i, hl.dsp.window.move({ workspace = i }))
+end
 
-hl.bind(mainMod .. " + mouse:272", hl.dsp.window.drag(), { mouse = true })
-hl.bind(mainMod .. " + mouse:273", hl.dsp.window.resize(), { mouse = true })
+bind(keys.workspaceNext, scrollWorkspace(1))
+bind(keys.workspacePrev, scrollWorkspace(-1))
 
-hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd("wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+"), { locked = true, repeating = true })
-hl.bind("XF86AudioLowerVolume", hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"), { locked = true, repeating = true })
-hl.bind("XF86AudioMute", hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"), { locked = true, repeating = true })
-hl.bind("XF86AudioMicMute", hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"), { locked = true, repeating = true })
-hl.bind("XF86MonBrightnessUp", hl.dsp.exec_cmd("brightnessctl -e4 -n2 set 5%+"), { locked = true, repeating = true })
-hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd("brightnessctl -e4 -n2 set 5%-"), { locked = true, repeating = true })
+-- Scratchpad
+bind(keys.scratchpad, hl.dsp.workspace.toggle_special("magic"))
 
-hl.bind("XF86AudioNext", hl.dsp.exec_cmd("playerctl next"), { locked = true })
-hl.bind("XF86AudioPause", hl.dsp.exec_cmd("playerctl play-pause"), { locked = true })
-hl.bind("XF86AudioPlay", hl.dsp.exec_cmd("playerctl play-pause"), { locked = true })
-hl.bind("XF86AudioPrev", hl.dsp.exec_cmd("playerctl previous"), { locked = true })
+-- Utils
+bind(keys.screenshot, hl.dsp.exec_cmd("hyprshot -m region -z"))
+bind(keys.colorPicker, hl.dsp.exec_cmd(apps.colorPicker))
+
+-- Brightness
+bind(keys.brightnessUp, hl.dsp.exec_cmd("brightnessctl -e4 -n2 set 5%+"), lockedRepeating)
+bind(keys.brightnessDown, hl.dsp.exec_cmd("brightnessctl -e4 -n2 set 5%-"), lockedRepeating)
+
+-- Media
+bind(keys.mediaToggle, hl.dsp.exec_cmd("playerctl play-pause"), locked)
+bind(keys.mediaNext, hl.dsp.exec_cmd("playerctl next"), locked)
+bind(keys.mediaPrev, hl.dsp.exec_cmd("playerctl previous"), locked)
+
+-- Volume
+bind(
+  keys.volumeUp,
+  hl.dsp.exec_cmd("wpctl set-volume -l " .. volumeMax / 100 .. " @DEFAULT_AUDIO_SINK@ 5%+"),
+  lockedRepeating
+)
+bind(keys.volumeDown, hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"), lockedRepeating)
+bind(keys.volumeMute, hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"), lockedRepeating)
+bind(keys.micMute, hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"), lockedRepeating)
