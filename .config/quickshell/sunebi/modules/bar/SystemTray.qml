@@ -29,18 +29,14 @@ Capsule {
     }
   }
 
-  Text {
+  StyledText {
     visible: Bluetooth.connected
     text: "BT"
     color: Theme.mutedForeground
-    font.family: Theme.fontText
-    font.pixelSize: Theme.fontSize
   }
 
-  Text {
+  StyledText {
     text: `${Math.round(Audio.volume * 100)}%`
     color: Theme.mutedForeground
-    font.family: Theme.fontText
-    font.pixelSize: Theme.fontSize
   }
 }

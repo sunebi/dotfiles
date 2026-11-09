@@ -4,10 +4,8 @@ import qs
 import qs.services
 
 Capsule {
-  Text {
+  StyledText {
     text: DateTime.time
-    color: Theme.foreground
     font.family: Theme.fontDisplay
-    font.pixelSize: Theme.fontSize
   }
 }

@@ -4,8 +4,9 @@ import qs
 
 Rectangle {
   default property alias content: row.data
+  property int paddingX: Theme.capsulePaddingX
 
-  implicitWidth: row.implicitWidth + 2 * Theme.capsulePaddingX
+  implicitWidth: row.implicitWidth + 2 * paddingX
   implicitHeight: Theme.barHeight
   radius: height / 2
   color: Theme.background
