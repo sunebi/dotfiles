@@ -15,7 +15,9 @@ PanelWindow {
     left: true
     right: true
   }
-  implicitHeight: Theme.barMarginTop + Theme.barHeight
+  // Tall enough for the tray overflow popup, which is drawn inside this window to allow dragging icons into and out of it
+  implicitHeight: Theme.barMarginTop + Theme.barHeight + Theme.barMarginTop + Theme.trayPopupHeight
+  exclusiveZone: Theme.barMarginTop + Theme.barHeight
   color: "transparent"
 
   // Only the capsules take input, the transparent gaps between them pass clicks through
@@ -28,6 +30,9 @@ PanelWindow {
     }
     Region {
       item: systemTray
+    }
+    Region {
+      item: systemTray.overflowPopup
     }
   }
 
