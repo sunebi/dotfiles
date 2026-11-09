@@ -23,12 +23,12 @@ Capsule {
       width: Theme.workspaceSize
       height: Theme.workspaceSize
       radius: width / 2
-      color: active ? Theme.activeBackground : "transparent"
+      color: active ? Theme.secondary : "transparent"
 
       Text {
         anchors.centerIn: parent
         text: button.workspaceId
-        color: button.active ? Theme.foreground : Theme.mutedForeground
+        color: button.active ? Theme.secondaryForeground : Theme.mutedForeground
         font.family: Theme.fontText
         font.pixelSize: Theme.fontSize
       }
