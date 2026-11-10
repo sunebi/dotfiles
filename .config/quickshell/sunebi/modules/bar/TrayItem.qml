@@ -11,8 +11,11 @@ IconImage {
   required property SystemTrayItem trayItem
   // The dragged copy is moved here while dragging, so neither the capsule nor the popup can cover it
   required property Item overlay
+  // Where the icon lives, "pinned" or "hidden": the drop areas only take icons from the places they make sense for
+  required property string group
 
-  source: trayItem.icon
+  // The item is destroyed when its app quits, a moment before the model drops this delegate
+  source: trayItem ? trayItem.icon : ""
   implicitSize: Theme.trayIconSize
   opacity: mouseArea.drag.active ? 0.4 : 1
 
@@ -50,7 +53,7 @@ IconImage {
 
     Drag.active: mouseArea.drag.active
     Drag.source: root
-    Drag.keys: ["trayItem"]
+    Drag.keys: [root.group]
     Drag.hotSpot.x: width / 2
     Drag.hotSpot.y: height / 2
     Drag.onDragFinished: {

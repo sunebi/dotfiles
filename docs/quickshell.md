@@ -13,7 +13,7 @@
 - `Theme.qml`: colors (shadcn neutral tokens, light or dark by `Config.darkTheme`), bar sizes, fonts.
 - `services/`: singletons. A skeleton inherited from end-4/dots-hyprland with the hearing protection removed. Check usage before deleting anything.
 - `modules/bar/`: bar components (`Bar`, `Workspaces`, `DynamicIsland`, `SystemTray`, `TrayItem`, `Capsule`, `StyledText`).
-- Tray overflow: items not pinned live in a popup drawn inside the bar window (a `PopupWindow` cannot receive a dragged icon), so `Bar` is taller than its `exclusiveZone`. Drag an icon between the capsule and the popup to pin or unpin it, or onto another capsule icon to swap their places. The popup and its chevron appear only while something is hidden or being dragged. The choice and order are saved by `services/TrayPins.qml` in `~/.local/state/quickshell/by-shell/<id>/tray.json`, keyed by the item `id` from `SystemTrayItem`.
+- Tray overflow: items not pinned live in a popup drawn inside the bar window (a `PopupWindow` cannot receive a dragged icon), so `Bar` is taller than its `exclusiveZone`. Drag a bar icon onto the chevron to hide it (the chevron also appears during a drag when nothing is hidden yet), drag a popup icon into the bar to pin it, or drop an icon onto another icon of the same place to swap them. Apps seen for the first time start hidden. The choice and order are saved by `services/TrayPins.qml` in `~/.local/state/quickshell/by-shell/<id>/tray.json`, keyed by the item `id` from `SystemTrayItem`.
 
 ## Conventions
 
