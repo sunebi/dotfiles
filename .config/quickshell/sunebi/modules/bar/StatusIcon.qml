@@ -15,5 +15,6 @@ MouseArea {
 
     anchors.verticalCenter: parent.verticalCenter
     text: root.glyph
+    font.weight: Theme.trayFontWeight
   }
 }

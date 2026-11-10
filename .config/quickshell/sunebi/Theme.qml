@@ -54,10 +54,11 @@ Singleton {
   readonly property int trayIconSize: 16
   readonly property int trayPopupHeight: trayIconSize + 2 * spacing
   readonly property int dragThreshold: 4
-  // Advance of the widest speaker glyph (three waves) at fontSize
-  readonly property int volumeIconWidth: 21
+  // Advance of the widest speaker glyph (three waves) at fontSize and trayFontWeight
+  readonly property int volumeIconWidth: 22
   readonly property int fontSize: 13
-  readonly property int layoutFontSize: 12
+  readonly property int statusLabelFontSize: 12
+  readonly property int trayFontWeight: Font.Medium
   readonly property int indicatorDuration: 250
   readonly property string fontText: "SF Pro Text"
   readonly property string fontDisplay: "SF Pro Display"

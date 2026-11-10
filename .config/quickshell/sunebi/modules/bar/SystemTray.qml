@@ -77,6 +77,7 @@ Item {
         anchors.centerIn: parent
         text: root.chevronDown
         color: Theme.foreground
+        font.weight: Theme.trayFontWeight
         rotation: root.overflowOpen ? 180 : 0
 
         Behavior on rotation {
@@ -118,17 +119,14 @@ Item {
       color: Theme.border
     }
 
-    StyledText {
+    StatusLabel {
       visible: KeyboardLayout.multiple
       text: KeyboardLayout.current
-      font.capitalization: Font.AllUppercase
-      font.pixelSize: Theme.layoutFontSize
     }
 
-    StyledText {
+    StatusLabel {
       visible: Bluetooth.connected
       text: "BT"
-      color: Theme.mutedForeground
     }
 
     MicrophoneIcon {}
