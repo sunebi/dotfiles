@@ -119,6 +119,13 @@ Item {
     }
 
     StyledText {
+      visible: KeyboardLayout.multiple
+      text: KeyboardLayout.current
+      font.capitalization: Font.AllUppercase
+      font.pixelSize: Theme.layoutFontSize
+    }
+
+    StyledText {
       visible: Bluetooth.connected
       text: "BT"
       color: Theme.mutedForeground

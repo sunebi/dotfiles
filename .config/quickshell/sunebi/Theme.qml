@@ -57,6 +57,7 @@ Singleton {
   // Advance of the widest speaker glyph (three waves) at fontSize
   readonly property int volumeIconWidth: 21
   readonly property int fontSize: 13
+  readonly property int layoutFontSize: 12
   readonly property int indicatorDuration: 250
   readonly property string fontText: "SF Pro Text"
   readonly property string fontDisplay: "SF Pro Display"
