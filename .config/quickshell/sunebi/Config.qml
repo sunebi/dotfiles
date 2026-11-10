@@ -13,6 +13,9 @@ Singleton {
   readonly property real volumeStep: 0.02
   readonly property real fineVolumeThreshold: 0.1
   readonly property real fineVolumeStep: 0.01
+  // Below the first threshold the volume icon shows one wave, from the second one it shows three
+  readonly property real lowVolumeThreshold: 0.33
+  readonly property real highVolumeThreshold: 0.85
 
   // Date and time
   readonly property string timeFormat: "hh:mm"

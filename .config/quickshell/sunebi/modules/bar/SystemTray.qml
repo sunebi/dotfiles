@@ -124,10 +124,9 @@ Item {
       color: Theme.mutedForeground
     }
 
-    StyledText {
-      text: `${Math.round(Audio.volume * 100)}%`
-      color: Theme.mutedForeground
-    }
+    MicrophoneIcon {}
+
+    VolumeIcon {}
   }
 
   // Lives in the bar window, not a PopupWindow, so a dragged icon can cross between it and the capsule

@@ -14,6 +14,10 @@ Singleton {
   readonly property PwNode source: Pipewire.defaultAudioSource
   readonly property bool ready: sink?.ready ?? false
   readonly property real volume: sink?.audio?.volume ?? 0
+  readonly property bool muted: sink?.audio?.muted ?? false
+  readonly property bool micMuted: source?.audio?.muted ?? false
+  // Not through inputDevices: a node has no audio until a tracker binds it, so only the default ones would count
+  readonly property bool hasMicrophone: Pipewire.nodes.values.some(node => node.properties["media.class"] === "Audio/Source")
 
   // Typed as list<var>: list<PwNode> breaks ScriptModel
   readonly property list<var> outputAppNodes: appNodes(true)
