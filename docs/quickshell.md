@@ -12,7 +12,8 @@
 - `Config.qml`: behavior settings (volume steps, date formats, workspace count, dark theme switch). Not colors or sizes.
 - `Theme.qml`: colors (shadcn neutral tokens, light or dark by `Config.darkTheme`), bar sizes, fonts.
 - `services/`: singletons. A skeleton inherited from end-4/dots-hyprland with the hearing protection removed. Check usage before deleting anything.
-- `modules/bar/`: bar components (`Bar`, `Workspaces`, `DynamicIsland`, `SystemTray`, `TrayItem`, `StatusIcon` with its `VolumeIcon` and `MicrophoneIcon`, `StatusLabel`, `Capsule`, `StyledText`).
+- `modules/bar/`: bar components (`Bar`, `Workspaces`, `DynamicIsland` with `IslandMedia` and `IslandVolume`, `SystemTray`, `TrayItem`, `StatusLabel`, `Capsule`, `StyledText`).
+- Dynamic Island: always a pill that widens with its content (`Theme.islandIdleWidth`, `islandMediaWidth`, `islandVolumeWidth`), empty while idle. It shows the cover and six `cava` levels of the playing player, or the volume bar for a moment after it changes. `services/Media.qml` picks the player (`Config.mediaPlayerPriority`, then the one that started last), `services/AudioVisualizer.qml` runs `cava` (it must be installed) on that app's PipeWire stream, so other apps do not move the bars. The date and time live in the tray.
 - Tray overflow: items not pinned live in a popup drawn inside the bar window (a `PopupWindow` cannot receive a dragged icon), so `Bar` is taller than its `exclusiveZone`. Drag a bar icon onto the chevron to hide it (the chevron also appears during a drag when nothing is hidden yet), drag a popup icon into the bar to pin it, or drop an icon onto another icon of the same place to swap them. Apps seen for the first time start hidden. The choice and order are saved by `services/TrayPins.qml` in `~/.local/state/quickshell/by-shell/<id>/tray.json`, keyed by the item `id` from `SystemTrayItem`.
 
 ## Conventions

@@ -129,9 +129,11 @@ Item {
       text: "BT"
     }
 
-    MicrophoneIcon {}
-
-    VolumeIcon {}
+    StatusLabel {
+      text: DateTime.trayClock
+      font.capitalization: Font.MixedCase
+      font.pixelSize: Theme.fontSize
+    }
   }
 
   // Lives in the bar window, not a PopupWindow, so a dragged icon can cross between it and the capsule

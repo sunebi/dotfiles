@@ -15,15 +15,25 @@ Singleton {
   readonly property bool ready: sink?.ready ?? false
   readonly property real volume: sink?.audio?.volume ?? 0
   readonly property bool muted: sink?.audio?.muted ?? false
-  readonly property bool micMuted: source?.audio?.muted ?? false
-  // Not through inputDevices: a node has no audio until a tracker binds it, so only the default ones would count
-  readonly property bool hasMicrophone: Pipewire.nodes.values.some(node => node.properties["media.class"] === "Audio/Source")
 
   // Typed as list<var>: list<PwNode> breaks ScriptModel
   readonly property list<var> outputAppNodes: appNodes(true)
   readonly property list<var> inputAppNodes: appNodes(false)
   readonly property list<var> outputDevices: devices(true)
   readonly property list<var> inputDevices: devices(false)
+
+  // SF Symbols private use glyphs of SF Pro Text: speaker.slash.fill, speaker.fill and speaker.wave.1, 2 and 3.fill
+  readonly property string volumeGlyph: {
+    if (muted)
+      return "\u{1002A3}";
+    if (volume <= 0)
+      return "\u{1002A1}";
+    if (volume < Config.lowVolumeThreshold)
+      return "\u{1002A5}";
+    if (volume < Config.highVolumeThreshold)
+      return "\u{1002A7}";
+    return "\u{1002A9}";
+  }
 
   function deviceDisplayName(node) {
     return node.nickname || node.description || "Unknown";

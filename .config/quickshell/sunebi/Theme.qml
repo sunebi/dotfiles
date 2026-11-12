@@ -54,8 +54,17 @@ Singleton {
   readonly property int trayIconSize: 16
   readonly property int trayPopupHeight: trayIconSize + 2 * spacing
   readonly property int dragThreshold: 4
-  // Advance of the widest speaker glyph (three waves) at fontSize and trayFontWeight
-  readonly property int volumeIconWidth: 22
+  readonly property int islandIdleWidth: 76
+  readonly property int islandMediaWidth: 96
+  readonly property int islandVolumeWidth: 144
+  // Above and below the content, the cover is as tall as what is left; the sides need more room because of the rounded ends
+  readonly property int islandInset: 6
+  readonly property int islandPaddingX: 9
+  readonly property int islandTrackHeight: 6
+  readonly property int visualizerBarWidth: 3
+  readonly property int visualizerBarSpacing: 2
+  // w-6, wider than the widest speaker glyph (three waves, 22) so every glyph is centered in the same box
+  readonly property int volumeIconWidth: 24
   readonly property int fontSize: 13
   readonly property int statusLabelFontSize: 12
   readonly property int trayFontWeight: Font.Medium

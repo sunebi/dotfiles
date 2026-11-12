@@ -11,6 +11,7 @@ Singleton {
   id: root
 
   readonly property string time: formatted(Config.timeFormat)
+  readonly property string trayClock: formatted(Config.trayClockFormat)
   readonly property string shortDate: formatted(Config.shortDateFormat)
   readonly property string date: formatted(Config.dateFormat)
   readonly property string longDate: formatted(Config.longDateFormat)
