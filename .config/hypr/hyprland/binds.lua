@@ -83,9 +83,9 @@ bind(keys.brightnessUp, hl.dsp.exec_cmd("brightnessctl -e4 -n2 set 5%+"), locked
 bind(keys.brightnessDown, hl.dsp.exec_cmd("brightnessctl -e4 -n2 set 5%-"), lockedRepeating)
 
 -- Media
-bind(keys.mediaToggle, hl.dsp.exec_cmd("playerctl play-pause"), locked)
-bind(keys.mediaNext, hl.dsp.exec_cmd("playerctl next"), locked)
-bind(keys.mediaPrev, hl.dsp.exec_cmd("playerctl previous"), locked)
+bind(keys.mediaToggle, hl.dsp.exec_cmd("qs -c sunebi ipc call media toggle"), locked)
+bind(keys.mediaNext, hl.dsp.exec_cmd("qs -c sunebi ipc call media next"), locked)
+bind(keys.mediaPrev, hl.dsp.exec_cmd("qs -c sunebi ipc call media previous"), locked)
 
 -- Volume
 bind(
