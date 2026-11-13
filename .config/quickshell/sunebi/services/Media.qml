@@ -17,9 +17,9 @@ Singleton {
   // The playing player the island shows, null while nothing plays
   readonly property MprisPlayer player: preferred() ?? (isActive(lastStarted) ? lastStarted : null) ?? playing[0] ?? null
 
-  // Spotify serves ads as tracks of their own, they are not music to show
+  // Spotify serves ads as tracks of their own, they are not music to show. Browsers expose nothing that tells a YouTube ad apart, so those cannot be filtered
   function isAd(candidate: MprisPlayer): bool {
-    return String(candidate.metadata["mpris:trackid"] ?? "").includes("/com/spotify/ad/");
+    return String(candidate.metadata["mpris:trackid"] ?? "").includes("/ad/") || String(candidate.metadata["xesam:url"] ?? "").includes("spotify:ad");
   }
 
   function isActive(candidate: MprisPlayer): bool {
