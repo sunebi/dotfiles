@@ -26,7 +26,7 @@ Item {
     anchors.right: parent.right
     anchors.verticalCenter: parent.verticalCenter
     width: Config.visualizerBars * (Theme.visualizerBarWidth + Theme.visualizerBarSpacing) - Theme.visualizerBarSpacing
-    height: Theme.trayIconSize
+    height: Theme.visualizerHeight
 
     Repeater {
       model: Config.visualizerBars

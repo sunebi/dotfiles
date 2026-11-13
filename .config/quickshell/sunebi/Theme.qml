@@ -63,6 +63,7 @@ Singleton {
   readonly property int islandTrackHeight: 6
   readonly property int visualizerBarWidth: 3
   readonly property int visualizerBarSpacing: 2
+  readonly property int visualizerHeight: 14
   // w-6, wider than the widest speaker glyph (three waves, 22) so every glyph is centered in the same box
   readonly property int volumeIconWidth: 24
   readonly property int fontSize: 13

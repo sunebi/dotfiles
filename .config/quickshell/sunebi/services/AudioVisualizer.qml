@@ -30,6 +30,20 @@ Singleton {
     }
   }
 
+  // The slow average of every bar, cava boosts some bands more than others and a fixed shape would follow that tilt instead of the music
+  property var averages: Array(Config.visualizerBars).fill(0.5)
+
+  // Every bar is measured against its own average so the bands stay balanced, the cosine window then gives the hump of Apple's visualizer and a bar falls slower than it rises so the motion does not flicker
+  function shape(values: var): var {
+    const center = (values.length - 1) / 2;
+    averages = values.map((value, index) => averages[index] * 0.97 + value * 0.03);
+    return values.map((value, index) => {
+      const relative = Math.min(1, value / Math.max(averages[index] * 1.7, 0.2));
+      const level = Math.pow(relative, 1.3) * (0.7 + 0.3 * Math.cos((index - center) * Math.PI / values.length));
+      return Math.max(level, (levels[index] ?? 0) * 0.82);
+    });
+  }
+
   function sourceFor(player: MprisPlayer): string {
     if (!player)
       return "";
@@ -53,9 +67,13 @@ Singleton {
     return `[general]
 bars = ${Config.visualizerBars}
 framerate = ${Config.visualizerFramerate}
+autosens = 1
+sensitivity = 150
 [input]
 method = pipewire
 source = ${source}
+[smoothing]
+noise_reduction = 25
 [output]
 method = raw
 raw_target = /dev/stdout
@@ -85,7 +103,7 @@ frame_delimiter = 10
       command: ["sh", "-c", `exec cava -p /dev/stdin <<'CAVA'\n${root.config(modelData)}CAVA`]
 
       stdout: SplitParser {
-        onRead: line => root.levels = line.split(";").filter(value => value !== "").map(value => Number(value) / 100)
+        onRead: line => root.levels = root.shape(line.split(";").filter(value => value !== "").map(value => Number(value) / 100))
       }
 
       Component.onDestruction: root.levels = Array(Config.visualizerBars).fill(0)
