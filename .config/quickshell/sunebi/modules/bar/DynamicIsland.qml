@@ -16,7 +16,7 @@ Capsule {
   readonly property bool focused: monitor !== null && monitor === Hyprland.focusedMonitor
   readonly property bool sessionVisible: SessionMenu.open && focused
   readonly property bool pickerVisible: Wallpaper.pickerOpen && focused
-  // Either of the two, the bar needs the keyboard and a click outside has to close them
+  // Either of the two, the bar needs the keyboard as long as it lasts
   readonly property bool expanded: sessionVisible || pickerVisible
   readonly property bool volumeVisible: !expanded && volumeTimer.running
   readonly property bool wallpaperVisible: !expanded && !volumeVisible && wallpaperTimer.running
@@ -29,11 +29,6 @@ Capsule {
   implicitHeight: sessionVisible ? Theme.islandSessionHeight : pickerVisible ? Theme.islandPickerHeight : Theme.barHeight
   radius: Math.min(height / 2, Theme.islandExpandedRadius)
   paddingX: Theme.islandPaddingX
-
-  function close(): void {
-    SessionMenu.open = false;
-    Wallpaper.pickerOpen = false;
-  }
 
   function showVolume(): void {
     if (armed)

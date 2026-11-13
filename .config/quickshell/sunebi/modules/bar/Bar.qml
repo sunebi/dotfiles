@@ -26,11 +26,6 @@ PanelWindow {
 
   // Only the capsules take input, the transparent gaps between them pass clicks through
   mask: Region {
-    // While the island is open, a click anywhere in the window outside of it closes it
-    Region {
-      width: dynamicIsland.expanded ? root.width : 0
-      height: dynamicIsland.expanded ? root.height : 0
-    }
     Region {
       item: workspaces
     }
@@ -43,12 +38,6 @@ PanelWindow {
     Region {
       item: systemTray.overflowPopup
     }
-  }
-
-  MouseArea {
-    anchors.fill: parent
-    enabled: dynamicIsland.expanded
-    onClicked: dynamicIsland.close()
   }
 
   Workspaces {
