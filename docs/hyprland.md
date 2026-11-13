@@ -4,7 +4,7 @@
 
 - `hyprland.lua` only holds the ordered `require("hyprland.*")` calls. Modules live in `hyprland/`, one per Hyprland wiki section.
 - `shared/keys.lua` holds the key chords and `shared/apps.lua` the applications, both used by `hyprland/binds.lua`. Binds are grouped into named blocks (Launcher, Apps, Session, Windows, Workspaces, Utils, Wallpaper, Brightness, Media, Volume).
-- Media keys and wallpaper binds call the shell through `qs -c sunebi ipc call <target> <function>` (`media`: `toggle`, `next`, `previous`; `wallpaper`: `toggle`, `random`; `session`: `toggle`, on `CTRL + ALT + Delete`; `cursor`: `toggle`, on `SUPER + CTRL + C`), so there is no `playerctl` dependency. They only work while the shell runs.
+- Media keys and wallpaper binds call the shell through `qs -c sunebi ipc call <target> <function>` (`media`: `toggle`, `next`, `previous`; `wallpaper`: `toggle`, `random`; `session`: `toggle`, on `CTRL + ALT + Delete`; `cursor`: `toggle`, on `SUPER + CTRL + Y`), so there is no `playerctl` dependency. They only work while the shell runs.
 
 ## Conventions
 
