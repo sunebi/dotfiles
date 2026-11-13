@@ -24,6 +24,10 @@ Singleton {
   readonly property int visualizerFramerate: 24
   readonly property int volumeHudMs: 1500
 
+  // Wallpaper
+  readonly property string wallpaperDir: Quickshell.env("HOME") + "/Pictures/Wallpapers"
+  readonly property int wallpaperHudMs: 1500
+
   // Date and time
   readonly property string timeFormat: "hh:mm"
   readonly property string trayClockFormat: "ddd MMM d  hh:mm"

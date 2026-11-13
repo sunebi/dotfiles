@@ -10,12 +10,13 @@ Capsule {
   id: root
 
   readonly property bool volumeVisible: volumeTimer.running
-  readonly property bool mediaVisible: !volumeVisible && Media.player !== null
+  readonly property bool wallpaperVisible: !volumeVisible && wallpaperTimer.running
+  readonly property bool mediaVisible: !volumeVisible && !wallpaperVisible && Media.player !== null
 
   // The sound system reports its first values while the shell starts, those are not changes of the user
   property bool armed: false
 
-  implicitWidth: volumeVisible ? Theme.islandVolumeWidth : mediaVisible ? Theme.islandMediaWidth : Theme.islandIdleWidth
+  implicitWidth: volumeVisible ? Theme.islandVolumeWidth : wallpaperVisible ? Theme.islandWallpaperWidth : mediaVisible ? Theme.islandMediaWidth : Theme.islandIdleWidth
   paddingX: Theme.islandPaddingX
 
   function showVolume(): void {
@@ -42,6 +43,20 @@ Capsule {
     interval: Config.volumeHudMs
   }
 
+  Timer {
+    id: wallpaperTimer
+
+    interval: Config.wallpaperHudMs
+  }
+
+  Connections {
+    target: Wallpaper
+
+    function onApplied(): void {
+      wallpaperTimer.restart();
+    }
+  }
+
   Connections {
     target: Audio
 
@@ -61,6 +76,19 @@ Capsule {
     IslandMedia {
       anchors.fill: parent
       opacity: root.mediaVisible ? 1 : 0
+      visible: opacity > 0
+
+      Behavior on opacity {
+        NumberAnimation {
+          duration: Theme.indicatorDuration
+          easing.type: Easing.OutCubic
+        }
+      }
+    }
+
+    IslandWallpaper {
+      anchors.fill: parent
+      opacity: root.wallpaperVisible ? 1 : 0
       visible: opacity > 0
 
       Behavior on opacity {

@@ -78,6 +78,10 @@ bind(keys.scratchpad, hl.dsp.workspace.toggle_special("magic"))
 bind(keys.screenshot, hl.dsp.exec_cmd("hyprshot -m region -z"))
 bind(keys.colorPicker, hl.dsp.exec_cmd(apps.colorPicker))
 
+-- Wallpaper
+bind(keys.wallpaperNext, hl.dsp.exec_cmd("qs -c sunebi ipc call wallpaper next"))
+bind(keys.wallpaperRandom, hl.dsp.exec_cmd("qs -c sunebi ipc call wallpaper random"))
+
 -- Brightness
 bind(keys.brightnessUp, hl.dsp.exec_cmd("brightnessctl -e4 -n2 set 5%+"), lockedRepeating)
 bind(keys.brightnessDown, hl.dsp.exec_cmd("brightnessctl -e4 -n2 set 5%-"), lockedRepeating)

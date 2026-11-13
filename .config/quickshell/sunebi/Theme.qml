@@ -57,6 +57,7 @@ Singleton {
   readonly property int islandIdleWidth: 76
   readonly property int islandMediaWidth: 96
   readonly property int islandVolumeWidth: 144
+  readonly property int islandWallpaperWidth: 176
   // Above and below the content, the cover is as tall as what is left; the sides need more room because of the rounded ends
   readonly property int islandInset: 6
   readonly property int islandPaddingX: 9

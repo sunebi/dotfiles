@@ -23,6 +23,8 @@ Item {
     asynchronous: true
     fillMode: Image.PreserveAspectCrop
     mipmap: true
+    // The decoder scales while it reads, wallpapers are far bigger than the preview and would otherwise take long to appear
+    sourceSize.height: height * 2
     opacity: 0
 
     NumberAnimation {
