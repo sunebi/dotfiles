@@ -39,7 +39,8 @@ Item {
   Rectangle {
     anchors.fill: parent
     radius: width / 2
-    color: root.focused ? Qt.lighter(Theme.secondary, 1.35) : Theme.secondary
+    // Ghost: no background until the pointer or the keyboard is on the button, the alpha of the same color is animated so it does not pass through black
+    color: root.focused ? Theme.secondary : Qt.alpha(Theme.secondary, 0)
 
     Behavior on color {
       ColorAnimation {
@@ -65,7 +66,7 @@ Item {
   StyledText {
     anchors.centerIn: parent
     color: root.hold && root.focused ? Theme.destructive : Theme.foreground
-    font.pixelSize: 18
+    font.pixelSize: 16
     font.weight: Theme.trayFontWeight
     text: root.glyph
   }
