@@ -13,11 +13,8 @@ Item {
     radius: Theme.radius / 2
     color: Theme.muted
 
-    Image {
+    CoverArt {
       anchors.fill: parent
-      asynchronous: true
-      fillMode: Image.PreserveAspectCrop
-      mipmap: true
       source: Media.player?.trackArtUrl ?? ""
     }
   }
