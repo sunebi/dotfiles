@@ -28,6 +28,10 @@ Singleton {
   readonly property string wallpaperDir: Quickshell.env("HOME") + "/Pictures/Wallpapers"
   readonly property int wallpaperHudMs: 1500
 
+  // Session
+  // How long the button of a reboot or a shutdown is held before it runs
+  readonly property int sessionHoldMs: 1200
+
   // Date and time
   readonly property string timeFormat: "hh:mm"
   readonly property string trayClockFormat: "ddd MMM d  hh:mm"

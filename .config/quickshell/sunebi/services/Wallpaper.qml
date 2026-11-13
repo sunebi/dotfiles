@@ -83,6 +83,7 @@ Singleton {
     target: "wallpaper"
 
     function toggle(): void {
+      SessionMenu.open = false;
       root.pickerOpen = !root.pickerOpen && files.count > 0;
     }
 

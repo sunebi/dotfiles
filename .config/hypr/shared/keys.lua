@@ -7,6 +7,7 @@ return {
   clipboard = "SUPER + V",
   launcher = "SUPER + Space",
   exit = "SUPER + M",
+  sessionMenu = "CTRL + ALT + Delete",
 
   closeWindow = "SUPER + Q",
   toggleFloat = "SUPER + ALT + Space",

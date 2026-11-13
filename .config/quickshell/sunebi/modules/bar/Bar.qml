@@ -18,18 +18,18 @@ PanelWindow {
     right: true
   }
   // Tall enough for the tray overflow popup, which is drawn inside this window to allow dragging icons into and out of it
-  implicitHeight: Math.max(Theme.barMarginTop + Theme.barHeight + Theme.barMarginTop + Theme.trayPopupHeight, Theme.barMarginTop + Theme.islandPickerHeight)
+  implicitHeight: Math.max(Theme.barMarginTop + Theme.barHeight + Theme.barMarginTop + Theme.trayPopupHeight, Theme.barMarginTop + Math.max(Theme.islandPickerHeight, Theme.islandSessionHeight))
   exclusiveZone: Theme.barMarginTop + Theme.barHeight
   color: "transparent"
-  // The arrow keys of the wallpaper carousel need the keyboard, it is given back when the carousel closes
-  WlrLayershell.keyboardFocus: dynamicIsland.pickerVisible ? WlrKeyboardFocus.Exclusive : WlrKeyboardFocus.None
+  // The keys of the wallpaper carousel and of the session menu need the keyboard, it is given back when they close
+  WlrLayershell.keyboardFocus: dynamicIsland.expanded ? WlrKeyboardFocus.Exclusive : WlrKeyboardFocus.None
 
   // Only the capsules take input, the transparent gaps between them pass clicks through
   mask: Region {
-    // While the carousel is open, a click anywhere in the window outside of it closes it
+    // While the island is open, a click anywhere in the window outside of it closes it
     Region {
-      width: dynamicIsland.pickerVisible ? root.width : 0
-      height: dynamicIsland.pickerVisible ? root.height : 0
+      width: dynamicIsland.expanded ? root.width : 0
+      height: dynamicIsland.expanded ? root.height : 0
     }
     Region {
       item: workspaces
@@ -47,8 +47,8 @@ PanelWindow {
 
   MouseArea {
     anchors.fill: parent
-    enabled: dynamicIsland.pickerVisible
-    onClicked: Wallpaper.pickerOpen = false
+    enabled: dynamicIsland.expanded
+    onClicked: dynamicIsland.close()
   }
 
   Workspaces {

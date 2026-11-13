@@ -16,7 +16,7 @@ Singleton {
   readonly property string date: formatted(Config.dateFormat)
   readonly property string longDate: formatted(Config.longDateFormat)
   readonly property string collapsedCalendarDate: formatted(Config.collapsedCalendarDateFormat)
-  property string uptime: "0m"
+  property string uptime: "0 min"
 
   function formatted(pattern) {
     return Qt.locale().toString(clock.date, pattern);
@@ -29,13 +29,13 @@ Singleton {
 
     const parts = [];
     if (days > 0)
-      parts.push(`${days}d`);
+      parts.push(`${days} d`);
     if (hours > 0)
-      parts.push(`${hours}h`);
+      parts.push(`${hours} h`);
     if (minutes > 0 || parts.length === 0)
-      parts.push(`${minutes}m`);
+      parts.push(`${minutes} min`);
 
-    return parts.join(", ");
+    return parts.join(" ");
   }
 
   SystemClock {

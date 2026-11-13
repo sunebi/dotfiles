@@ -27,6 +27,7 @@ bind(keys.editor, hl.dsp.exec_cmd(apps.editor))
 bind(keys.volumeMixer, hl.dsp.exec_cmd(apps.volumeMixer))
 
 -- Session
+bind(keys.sessionMenu, hl.dsp.exec_cmd("qs -c sunebi ipc call session toggle"))
 bind(
   keys.exit,
   hl.dsp.exec_cmd("command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch 'hl.dsp.exit()'")

@@ -67,8 +67,16 @@ Singleton {
   readonly property int islandPickerWidth: 2 * islandPickerPadding + 2 * islandPickerCardWidth + islandPickerSelectedCardWidth + 2 * islandPickerGap
   readonly property int islandPickerHeight: 2 * islandPickerPadding + islandPickerSelectedCardWidth * 9 / 16 + islandPickerGap + islandPickerFooterHeight
   // rounded-2xl for the cards, the island a little under rounded-4xl so the corners stay close to the cards' without being concentric
-  readonly property int islandPickerRadius: 28
+  readonly property int islandExpandedRadius: 28
   readonly property int islandPickerCardRadius: 16
+  // The session menu opens the same way: p-5 around it, size-10 buttons gap-6 apart, the rows gap-4 apart, w-96 wide
+  readonly property int islandSessionPadding: 20
+  readonly property int islandSessionButtonSize: 40
+  readonly property int islandSessionButtonGap: 24
+  readonly property int islandSessionRowGap: 16
+  readonly property int islandSessionLineHeight: 16
+  readonly property int islandSessionWidth: 384
+  readonly property int islandSessionHeight: 2 * islandSessionPadding + 2 * islandSessionLineHeight + 2 * islandSessionRowGap + islandSessionButtonSize
   // Above and below the content, the cover is as tall as what is left; the sides need more room because of the rounded ends
   readonly property int islandInset: 6
   readonly property int islandPaddingX: 9
