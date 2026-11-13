@@ -19,15 +19,20 @@ Singleton {
   readonly property MprisPlayer player: preferred() ?? (isActive(lastStarted) ? lastStarted : null) ?? playing[0] ?? null
 
   // What the media keys steer: the island's player, or else the one that played last so a paused track can be resumed
-  readonly property MprisPlayer controlled: player ?? lastStarted ?? Mpris.players.values[0] ?? null
+  readonly property MprisPlayer controlled: player ?? lastStarted ?? Mpris.players.values.find(candidate => isTarget(candidate)) ?? null
 
   // Spotify serves ads as tracks of their own, they are not music to show. Browsers expose nothing that tells a YouTube ad apart, so those cannot be filtered
   function isAd(candidate: MprisPlayer): bool {
     return String(candidate.metadata["mpris:trackid"] ?? "").includes("/ad/") || String(candidate.metadata["xesam:url"] ?? "").includes("spotify:ad");
   }
 
+  // Only the apps of the config count as players, whatever else reports itself over MPRIS is not music of the user
+  function isTarget(candidate: MprisPlayer): bool {
+    return Config.mediaPlayers.includes((candidate.desktopEntry ?? "").toLowerCase());
+  }
+
   function isActive(candidate: MprisPlayer): bool {
-    return candidate !== null && candidate.isPlaying && !isAd(candidate);
+    return candidate !== null && candidate.isPlaying && isTarget(candidate) && !isAd(candidate);
   }
 
   // A configured identity wins over the others even if one of them started later
@@ -66,12 +71,12 @@ Singleton {
       target: modelData
 
       Component.onCompleted: {
-        if (modelData.isPlaying)
+        if (modelData.isPlaying && root.isTarget(modelData))
           root.lastStarted = modelData;
       }
 
       function onIsPlayingChanged(): void {
-        if (modelData.isPlaying)
+        if (modelData.isPlaying && root.isTarget(modelData))
           root.lastStarted = modelData;
       }
     }

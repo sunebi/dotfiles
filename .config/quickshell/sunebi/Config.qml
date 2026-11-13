@@ -20,6 +20,8 @@ Singleton {
   // Media
   // Player identities that win over the other players while they play, after them the player that started last
   readonly property list<string> mediaPlayerPriority: ["Spotify"]
+  // Desktop entries of the only apps the island and the visualizer follow. Every other player is ignored, the browsers that are not listed and the Chromium process Spotify starts for its ads, which has no desktop entry at all
+  readonly property list<string> mediaPlayers: ["spotify", "zen"]
   readonly property int visualizerBars: 6
   readonly property int visualizerFramerate: 24
   readonly property int volumeHudMs: 1500

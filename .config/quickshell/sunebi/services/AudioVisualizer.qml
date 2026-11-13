@@ -16,7 +16,7 @@ Singleton {
   // One value from 0 to 1 per bar, all zero while nothing plays
   property var levels: Array(Config.visualizerBars).fill(0)
 
-  // Empty while nothing plays, otherwise the name of the playing app's stream so other apps cannot move the bars
+  // Empty while nothing plays, otherwise the serial of the playing app's stream so other apps cannot move the bars
   readonly property string wanted: sourceFor(Media.player)
   // Follows wanted at once, but keeps cava alive through the short gap between tracks instead of restarting it
   property string source: wanted
@@ -44,23 +44,40 @@ Singleton {
     });
   }
 
+  // The playback streams, they have only their name until a tracker binds them
+  readonly property var streams: Pipewire.nodes.values.filter(node => node.isStream && node.isSink)
+
+  function serialOf(node: PwNode): int {
+    return Number(node.properties["object.serial"] ?? 0);
+  }
+
+  // The serial of the stream to read, empty when the player has none. Several streams can carry the same app name: a browser opens one for every tab that has played a sound
   function sourceFor(player: MprisPlayer): string {
     if (!player)
       return "";
 
     const identity = player.identity.toLowerCase();
     const desktopEntry = (player.desktopEntry ?? "").toLowerCase();
-    // Playback streams only have their name until a tracker binds them, their properties are empty
-    const stream = Pipewire.nodes.values.find(node => {
-      if (!node.isStream || !node.isSink)
-        return false;
-
+    const candidates = streams.filter(node => {
       const application = node.name.toLowerCase();
       return application !== "" && (application === desktopEntry || identity.includes(application));
     });
+    // The tab of the playing page names its stream after the page, which the player reports as its title
+    const title = player.trackTitle ?? "";
+    const named = title !== "" ? candidates.filter(node => (node.properties["media.name"] ?? "").includes(title)) : [];
+    const pool = named.length > 0 ? named : candidates;
+    if (pool.length === 0)
+      return "";
 
-    // The default output would also carry voices of calls, so there is no fallback to it
-    return stream ? stream.name : "";
+    // A stream that carries sound is attached to a driver, the leftovers of a page that was paused and played again are idle and have none. Of what is left the newest one wins. The name is only a fallback until the tracker has delivered the serial
+    const running = pool.filter(node => node.properties["node.driver-id"] !== undefined);
+    const live = running.length > 0 ? running : pool;
+    const newest = live.reduce((best, node) => serialOf(node) > serialOf(best) ? node : best);
+    return String(newest.properties["object.serial"] ?? newest.name);
+  }
+
+  PwObjectTracker {
+    objects: root.streams
   }
 
   function config(source: string): string {
