@@ -34,6 +34,10 @@ Singleton {
   // How long the button of a reboot or a shutdown is held before it runs
   readonly property int sessionHoldMs: 1200
 
+  // Cursor
+  // The size the picked cursor theme is set with, the same as XCURSOR_SIZE in the hypr env
+  readonly property int cursorSize: 24
+
   // Date and time
   readonly property string timeFormat: "hh:mm"
   readonly property string trayClockFormat: "ddd MMM d  hh:mm"

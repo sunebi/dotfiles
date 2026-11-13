@@ -16,8 +16,9 @@ Capsule {
   readonly property bool focused: monitor !== null && monitor === Hyprland.focusedMonitor
   readonly property bool sessionVisible: SessionMenu.open && focused
   readonly property bool pickerVisible: Wallpaper.pickerOpen && focused
-  // Either of the two, the bar needs the keyboard as long as it lasts
-  readonly property bool expanded: sessionVisible || pickerVisible
+  readonly property bool cursorVisible: CursorTheme.pickerOpen && focused
+  // Any of the three, the bar needs the keyboard as long as it lasts
+  readonly property bool expanded: sessionVisible || pickerVisible || cursorVisible
   readonly property bool volumeVisible: !expanded && volumeTimer.running
   readonly property bool wallpaperVisible: !expanded && !volumeVisible && wallpaperTimer.running
   readonly property bool mediaVisible: !expanded && !volumeVisible && !wallpaperVisible && Media.player !== null
@@ -25,8 +26,8 @@ Capsule {
   // The sound system reports its first values while the shell starts, those are not changes of the user
   property bool armed: false
 
-  implicitWidth: sessionVisible ? Theme.islandSessionWidth : pickerVisible ? Theme.islandPickerWidth : volumeVisible ? Theme.islandVolumeWidth : wallpaperVisible ? Theme.islandWallpaperWidth : mediaVisible ? Theme.islandMediaWidth : Theme.islandIdleWidth
-  implicitHeight: sessionVisible ? Theme.islandSessionHeight : pickerVisible ? Theme.islandPickerHeight : Theme.barHeight
+  implicitWidth: sessionVisible ? Theme.islandSessionWidth : (pickerVisible || cursorVisible) ? Theme.islandPickerWidth : volumeVisible ? Theme.islandVolumeWidth : wallpaperVisible ? Theme.islandWallpaperWidth : mediaVisible ? Theme.islandMediaWidth : Theme.islandIdleWidth
+  implicitHeight: sessionVisible ? Theme.islandSessionHeight : (pickerVisible || cursorVisible) ? Theme.islandPickerHeight : Theme.barHeight
   radius: Math.min(height / 2, Theme.islandExpandedRadius)
   paddingX: Theme.islandPaddingX
 
@@ -107,11 +108,46 @@ Capsule {
       }
     }
 
-    IslandWallpaperPicker {
+    IslandCarousel {
       anchors.fill: parent
       active: root.pickerVisible
       opacity: root.pickerVisible ? 1 : 0
       visible: opacity > 0
+      model: Wallpaper.model
+      startIndex: Wallpaper.indexOfCurrent()
+      nameAt: index => Wallpaper.nameAt(index)
+
+      onChosen: index => {
+        Wallpaper.apply(Wallpaper.pathAt(index));
+        Wallpaper.pickerOpen = false;
+      }
+      onDismissed: Wallpaper.pickerOpen = false
+
+      Behavior on opacity {
+        NumberAnimation {
+          duration: Theme.indicatorDuration
+          easing.type: Easing.OutCubic
+        }
+      }
+    }
+
+    IslandCarousel {
+      anchors.fill: parent
+      active: root.cursorVisible
+      opacity: root.cursorVisible ? 1 : 0
+      visible: opacity > 0
+      model: CursorTheme.model
+      startIndex: CursorTheme.indexOfCurrent()
+      nameAt: index => CursorTheme.nameAt(index)
+      // An arrow is small, it is shown whole in the middle of its card
+      fillMode: Image.PreserveAspectFit
+      imagePadding: 16
+
+      onChosen: index => {
+        CursorTheme.apply(CursorTheme.nameAt(index));
+        CursorTheme.pickerOpen = false;
+      }
+      onDismissed: CursorTheme.pickerOpen = false
 
       Behavior on opacity {
         NumberAnimation {

@@ -4,12 +4,22 @@ import QtQuick
 import qs
 import qs.services
 
-// The island's content while it is open to choose a wallpaper. Only the selected card is full size, no outlines. The strip stops at its ends instead of centering the first and the last card, so there is no empty space beside it
+// The island's content while it is open to choose one of many pictures, the wallpapers or the cursor themes. The model has a filePath role with the picture of every item. Only the selected card is full size, no outlines. The strip stops at its ends instead of centering the first and the last card, so there is no empty space beside it
 FocusScope {
   id: root
 
+  required property var model
+  // What the footer says about the item at the index
+  property var nameAt: index => ""
+  // The item that is selected when the carousel opens
+  property int startIndex: 0
+  property int fillMode: Image.PreserveAspectCrop
+  property int imagePadding: 0
   property bool active: false
   property int currentIndex: 0
+
+  signal chosen(int index)
+  signal dismissed
   // False for the moment the carousel opens, so the strip and the cards are put in place instead of sliding there from where the last use left them
   property bool animated: true
 
@@ -17,7 +27,7 @@ FocusScope {
   readonly property int sideMargin: Theme.islandPickerPadding - Theme.islandPaddingX
   readonly property int verticalMargin: Theme.islandPickerPadding - Theme.islandInset
 
-  readonly property int count: Wallpaper.model.count
+  readonly property int count: model.count
   readonly property int cardStep: Theme.islandPickerCardWidth + Theme.islandPickerGap
   readonly property real stripWidth: count * cardStep - Theme.islandPickerGap + Theme.islandPickerSelectedCardWidth - Theme.islandPickerCardWidth
   // The width the strip has once the island is fully open. The island grows while it opens, a target that followed it would keep moving
@@ -29,26 +39,21 @@ FocusScope {
     currentIndex = Math.max(0, Math.min(count - 1, index));
   }
 
-  function choose(path: string): void {
-    Wallpaper.apply(path);
-    Wallpaper.pickerOpen = false;
-  }
-
   onActiveChanged: {
     if (!active)
       return;
     animated = false;
-    select(Wallpaper.indexOfCurrent());
+    select(startIndex);
     animated = true;
     forceActiveFocus();
   }
 
   Keys.onLeftPressed: select(currentIndex - 1)
   Keys.onRightPressed: select(currentIndex + 1)
-  Keys.onReturnPressed: choose(Wallpaper.pathAt(currentIndex))
-  Keys.onEnterPressed: choose(Wallpaper.pathAt(currentIndex))
-  Keys.onSpacePressed: choose(Wallpaper.pathAt(currentIndex))
-  Keys.onEscapePressed: Wallpaper.pickerOpen = false
+  Keys.onReturnPressed: chosen(currentIndex)
+  Keys.onEnterPressed: chosen(currentIndex)
+  Keys.onSpacePressed: chosen(currentIndex)
+  Keys.onEscapePressed: dismissed()
   // A and D, and the Russian letters on the same keys, because the layout of the keyboard is not known here
   Keys.onPressed: event => {
     const letter = event.text.toLowerCase();
@@ -88,7 +93,7 @@ FocusScope {
       }
 
       Repeater {
-        model: Wallpaper.model
+        model: root.model
 
         delegate: Item {
           id: cell
@@ -127,8 +132,9 @@ FocusScope {
 
             Image {
               anchors.fill: parent
+              anchors.margins: root.imagePadding
               asynchronous: true
-              fillMode: Image.PreserveAspectCrop
+              fillMode: root.fillMode
               // A fixed size, so the decoder does not run again while the card grows
               sourceSize.height: Theme.islandPickerSelectedCardWidth * 9 / 16 * 2
               // Only the cards around the selected one are loaded, a folder can hold many more than are ever shown
@@ -147,8 +153,8 @@ FocusScope {
 
       onClicked: mouse => {
         const cell = strip.childAt(mouse.x - strip.x, mouse.y);
-        if (cell && cell.filePath)
-          root.choose(cell.filePath);
+        if (cell && cell.filePath !== undefined)
+          root.chosen(cell.index);
       }
       onWheel: wheel => {
         wheelAngle += wheel.angleDelta.y !== 0 ? wheel.angleDelta.y : wheel.angleDelta.x;
@@ -175,7 +181,7 @@ FocusScope {
     color: Theme.mutedForeground
     font.pixelSize: Theme.statusLabelFontSize
     elide: Text.ElideRight
-    text: Wallpaper.nameAt(root.currentIndex)
+    text: root.nameAt(root.currentIndex)
   }
 
   StyledText {

@@ -33,6 +33,7 @@ return {
 
   wallpaperPicker = "SUPER + CTRL + T",
   wallpaperRandom = "SUPER + CTRL + ALT + T",
+  cursorPicker = "SUPER + CTRL + C",
 
   volumeUp = "XF86AudioRaiseVolume",
   volumeDown = "XF86AudioLowerVolume",

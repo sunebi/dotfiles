@@ -82,6 +82,7 @@ bind(keys.colorPicker, hl.dsp.exec_cmd(apps.colorPicker))
 -- Wallpaper
 bind(keys.wallpaperPicker, hl.dsp.exec_cmd("qs -c sunebi ipc call wallpaper toggle"))
 bind(keys.wallpaperRandom, hl.dsp.exec_cmd("qs -c sunebi ipc call wallpaper random"))
+bind(keys.cursorPicker, hl.dsp.exec_cmd("qs -c sunebi ipc call cursor toggle"))
 
 -- Brightness
 bind(keys.brightnessUp, hl.dsp.exec_cmd("brightnessctl -e4 -n2 set 5%+"), lockedRepeating)
