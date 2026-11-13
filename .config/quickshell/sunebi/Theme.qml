@@ -66,9 +66,9 @@ Singleton {
   readonly property int islandPickerFooterHeight: 16
   readonly property int islandPickerWidth: 2 * islandPickerPadding + 2 * islandPickerCardWidth + islandPickerSelectedCardWidth + 2 * islandPickerGap
   readonly property int islandPickerHeight: 2 * islandPickerPadding + islandPickerSelectedCardWidth * 9 / 16 + islandPickerGap + islandPickerFooterHeight
-  // rounded-4xl for the island and rounded-3xl for the cards
-  readonly property int islandPickerRadius: 32
-  readonly property int islandPickerCardRadius: 24
+  // rounded-2xl for the cards, the island a little under rounded-4xl so the corners stay close to the cards' without being concentric
+  readonly property int islandPickerRadius: 28
+  readonly property int islandPickerCardRadius: 16
   // Above and below the content, the cover is as tall as what is left; the sides need more room because of the rounded ends
   readonly property int islandInset: 6
   readonly property int islandPaddingX: 9
