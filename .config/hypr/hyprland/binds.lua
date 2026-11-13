@@ -79,7 +79,7 @@ bind(keys.screenshot, hl.dsp.exec_cmd("hyprshot -m region -z"))
 bind(keys.colorPicker, hl.dsp.exec_cmd(apps.colorPicker))
 
 -- Wallpaper
-bind(keys.wallpaperNext, hl.dsp.exec_cmd("qs -c sunebi ipc call wallpaper next"))
+bind(keys.wallpaperPicker, hl.dsp.exec_cmd("qs -c sunebi ipc call wallpaper toggle"))
 bind(keys.wallpaperRandom, hl.dsp.exec_cmd("qs -c sunebi ipc call wallpaper random"))
 
 -- Brightness

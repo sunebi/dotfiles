@@ -15,6 +15,10 @@ Singleton {
   property string current: ""
   readonly property string name: current.split("/").pop().replace(/\.[^.]+$/, "")
 
+  // The picker window of the screen with the focus shows while this is set
+  property bool pickerOpen: false
+  readonly property FolderListModel model: files
+
   // Emitted when the user changes the wallpaper, not when the shell starts
   signal applied
 
@@ -30,16 +34,14 @@ Singleton {
     return -1;
   }
 
+  function nameAt(index: int): string {
+    return files.get(index, "fileName") ?? "";
+  }
+
   function apply(path: string): void {
     current = path;
     Quickshell.execDetached(["awww", "img", "--transition-type", "fade", path]);
     applied();
-  }
-
-  // In name order, after the last one comes the first
-  function next(): void {
-    if (files.count > 0)
-      apply(pathAt((indexOfCurrent() + 1) % files.count));
   }
 
   // Never the wallpaper that is already shown, unless it is the only one
@@ -80,8 +82,8 @@ Singleton {
   IpcHandler {
     target: "wallpaper"
 
-    function next(): void {
-      root.next();
+    function toggle(): void {
+      root.pickerOpen = !root.pickerOpen && files.count > 0;
     }
 
     function random(): void {

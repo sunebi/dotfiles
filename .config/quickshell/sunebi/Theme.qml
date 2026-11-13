@@ -58,6 +58,12 @@ Singleton {
   readonly property int islandMediaWidth: 96
   readonly property int islandVolumeWidth: 144
   readonly property int islandWallpaperWidth: 176
+  // w-240 and h-64, the cards are 16:9 and the selected one is a third wider
+  readonly property int pickerWidth: 960
+  readonly property int pickerHeight: 256
+  readonly property int pickerCardWidth: 188
+  readonly property int pickerSelectedCardWidth: 264
+  readonly property int pickerPadding: 24
   // Above and below the content, the cover is as tall as what is left; the sides need more room because of the rounded ends
   readonly property int islandInset: 6
   readonly property int islandPaddingX: 9

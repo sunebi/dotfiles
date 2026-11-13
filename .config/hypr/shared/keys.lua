@@ -30,7 +30,7 @@ return {
   screenshot = { "SUPER + SHIFT + S", "Print" },
   colorPicker = "SUPER + SHIFT + C",
 
-  wallpaperNext = "SUPER + CTRL + T",
+  wallpaperPicker = "SUPER + CTRL + T",
   wallpaperRandom = "SUPER + CTRL + ALT + T",
 
   volumeUp = "XF86AudioRaiseVolume",
