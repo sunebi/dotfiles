@@ -58,12 +58,17 @@ Singleton {
   readonly property int islandMediaWidth: 96
   readonly property int islandVolumeWidth: 144
   readonly property int islandWallpaperWidth: 176
-  // w-240 and h-64, the cards are 16:9 and the selected one is a third wider
-  readonly property int pickerWidth: 960
-  readonly property int pickerHeight: 256
-  readonly property int pickerCardWidth: 188
-  readonly property int pickerSelectedCardWidth: 264
-  readonly property int pickerPadding: 24
+  // The island opens into the wallpaper carousel: p-4 around it, gap-3 between the cards, w-32 neighbours and a w-40 selected card, all 16:9
+  readonly property int islandPickerPadding: 16
+  readonly property int islandPickerGap: 12
+  readonly property int islandPickerCardWidth: 128
+  readonly property int islandPickerSelectedCardWidth: 160
+  readonly property int islandPickerFooterHeight: 16
+  readonly property int islandPickerWidth: 2 * islandPickerPadding + 2 * islandPickerCardWidth + islandPickerSelectedCardWidth + 2 * islandPickerGap
+  readonly property int islandPickerHeight: 2 * islandPickerPadding + islandPickerSelectedCardWidth * 9 / 16 + islandPickerGap + islandPickerFooterHeight
+  // rounded-4xl for the island and rounded-3xl for the cards
+  readonly property int islandPickerRadius: 32
+  readonly property int islandPickerCardRadius: 24
   // Above and below the content, the cover is as tall as what is left; the sides need more room because of the rounded ends
   readonly property int islandInset: 6
   readonly property int islandPaddingX: 9
