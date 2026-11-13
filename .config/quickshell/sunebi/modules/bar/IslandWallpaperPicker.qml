@@ -10,6 +10,8 @@ FocusScope {
 
   property bool active: false
   property int currentIndex: 0
+  // False for the moment the carousel opens, so the strip and the cards are put in place instead of sliding there from where the last use left them
+  property bool animated: true
 
   // The island pads its content by less than the carousel needs, this is the rest
   readonly property int sideMargin: Theme.islandPickerPadding - Theme.islandPaddingX
@@ -18,8 +20,10 @@ FocusScope {
   readonly property int count: Wallpaper.model.count
   readonly property int cardStep: Theme.islandPickerCardWidth + Theme.islandPickerGap
   readonly property real stripWidth: count * cardStep - Theme.islandPickerGap + Theme.islandPickerSelectedCardWidth - Theme.islandPickerCardWidth
+  // The width the strip has once the island is fully open. The island grows while it opens, a target that followed it would keep moving
+  readonly property real viewportWidth: Theme.islandPickerWidth - 2 * Theme.islandPickerPadding
   // Centers the selected card, but never moves the strip further than its ends
-  readonly property real targetX: Math.max(0, Math.min(currentIndex * cardStep + Theme.islandPickerSelectedCardWidth / 2 - viewport.width / 2, stripWidth - viewport.width))
+  readonly property real targetX: Math.max(0, Math.min(currentIndex * cardStep + Theme.islandPickerSelectedCardWidth / 2 - viewportWidth / 2, stripWidth - viewportWidth))
 
   function select(index: int): void {
     currentIndex = Math.max(0, Math.min(count - 1, index));
@@ -33,7 +37,9 @@ FocusScope {
   onActiveChanged: {
     if (!active)
       return;
+    animated = false;
     select(Wallpaper.indexOfCurrent());
+    animated = true;
     forceActiveFocus();
   }
 
@@ -61,7 +67,8 @@ FocusScope {
     anchors.leftMargin: root.sideMargin
     anchors.right: parent.right
     anchors.rightMargin: root.sideMargin
-    height: Theme.islandPickerSelectedCardWidth * 9 / 16
+    // Never taller than the island has grown so far, so the cards do not stick out of it while it opens and closes
+    height: Math.max(0, Math.min(Theme.islandPickerSelectedCardWidth * 9 / 16, root.height - 2 * root.verticalMargin - Theme.islandPickerGap - Theme.islandPickerFooterHeight))
     clip: true
 
     Row {
@@ -72,6 +79,8 @@ FocusScope {
       spacing: Theme.islandPickerGap
 
       Behavior on x {
+        enabled: root.animated
+
         NumberAnimation {
           duration: Theme.indicatorDuration
           easing.type: Easing.OutCubic
@@ -92,6 +101,8 @@ FocusScope {
           height: strip.height
 
           Behavior on width {
+            enabled: root.animated
+
             NumberAnimation {
               duration: Theme.indicatorDuration
               easing.type: Easing.OutCubic
@@ -107,6 +118,8 @@ FocusScope {
             opacity: cell.selected ? 1 : 0.6
 
             Behavior on opacity {
+              enabled: root.animated
+
               NumberAnimation {
                 duration: Theme.indicatorDuration
               }
@@ -126,34 +139,15 @@ FocusScope {
       }
     }
 
-    // One area for the click, the drag and the wheel. A drag of one card's width moves the selection by one card, a click without a drag applies the card under the pointer
+    // A click applies the card under the pointer, the wheel moves the selection
     MouseArea {
-      id: pointer
-
-      property real dragAnchor: 0
-      property bool dragged: false
       property real wheelAngle: 0
 
       anchors.fill: parent
 
-      onPressed: mouse => {
-        dragAnchor = mouse.x;
-        dragged = false;
-      }
-      onPositionChanged: mouse => {
-        if (Math.abs(mouse.x - dragAnchor) > 6)
-          dragged = true;
-        if (mouse.x - dragAnchor <= -root.cardStep) {
-          root.select(root.currentIndex + 1);
-          dragAnchor -= root.cardStep;
-        } else if (mouse.x - dragAnchor >= root.cardStep) {
-          root.select(root.currentIndex - 1);
-          dragAnchor += root.cardStep;
-        }
-      }
-      onReleased: mouse => {
+      onClicked: mouse => {
         const cell = strip.childAt(mouse.x - strip.x, mouse.y);
-        if (!dragged && cell && cell.filePath)
+        if (cell && cell.filePath)
           root.choose(cell.filePath);
       }
       onWheel: wheel => {
@@ -193,6 +187,6 @@ FocusScope {
     anchors.bottomMargin: root.verticalMargin
     color: Theme.mutedForeground
     font.pixelSize: Theme.statusLabelFontSize
-    text: (root.currentIndex + 1) + "/" + root.count
+    text: (root.currentIndex + 1) + " / " + root.count
   }
 }
