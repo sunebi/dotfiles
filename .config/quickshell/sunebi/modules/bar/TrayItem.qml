@@ -4,6 +4,7 @@ import Quickshell.Widgets
 import QtQuick
 
 import qs
+import qs.components.menu
 
 IconImage {
   id: root
@@ -13,6 +14,7 @@ IconImage {
   required property Item overlay
   // Where the icon lives, "pinned" or "hidden": the drop areas only take icons from the places they make sense for
   required property string group
+  readonly property bool menuOpen: contextMenu.visible
 
   // The item is destroyed when its app quits, a moment before the model drops this delegate
   source: trayItem ? trayItem.icon : ""
@@ -36,12 +38,35 @@ IconImage {
         return;
       }
 
-      if (!root.trayItem.hasMenu)
-        return;
-
-      const menuPosition = root.QsWindow.mapFromItem(root, 0, root.height);
-      root.trayItem.display(root.QsWindow.window, menuPosition.x, menuPosition.y);
+      if (root.trayItem.hasMenu)
+        root.toggleMenu();
     }
+  }
+
+  // The anchor is fixed when the menu opens: an icon in the overflow popup moves away as soon as that popup closes, and the menu stays where it was opened
+  function toggleMenu(): void {
+    if (contextMenu.visible) {
+      contextMenu.visible = false;
+      return;
+    }
+    const position = root.QsWindow.mapFromItem(root, 0, 0);
+    // From the icon down past the capsule, so the menu hangs a gap below the bar and ends where the icon ends
+    contextMenu.anchor.rect = Qt.rect(position.x, position.y, root.width, root.height + (Theme.barHeight - Theme.trayIconSize) / 2 + Theme.menuGap);
+    // The menu hangs from the right edge of the icon to the left, so its submenus go the same way
+    contextMenu.anchorRight = position.x + root.width;
+    contextMenu.screenWidth = root.QsWindow.window.screen.width;
+    contextMenu.submenusPreferLeft = true;
+    contextMenu.visible = true;
+  }
+
+  ContextMenu {
+    id: contextMenu
+
+    menu: root.trayItem?.menu
+    anchor.window: root.QsWindow.window
+    anchor.edges: Edges.Bottom | Edges.Right
+    anchor.gravity: Edges.Bottom | Edges.Left
+    anchor.adjustment: PopupAdjustment.Slide
   }
 
   IconImage {

@@ -22,6 +22,15 @@ Singleton {
   readonly property real resourceSpring: 3
   readonly property real resourceDamping: 0.3
   readonly property int trayIconSize: 16
+  // The context menu: the rows sit in a padding of their own, the first menu hangs a gap below what opened it
+  readonly property int menuItemHeight: 28
+  readonly property int menuSeparatorHeight: 9
+  readonly property int menuPadding: 4
+  readonly property int menuItemPaddingX: 8
+  readonly property int menuIndicatorWidth: 24
+  readonly property int menuMinWidth: 180
+  readonly property int menuGap: 6
+  readonly property int menuSubmenuGap: 2
   readonly property int trayPopupHeight: trayIconSize + 2 * spacing
   readonly property int dragThreshold: 4
   readonly property int islandIdleWidth: 76

@@ -18,11 +18,29 @@ Item {
   readonly property Item overflowPopup: popup
 
   property bool overflowOpen: false
+
   // The ghost icon lives in the overlay only while an icon is dragged
   readonly property bool dragging: dragLayer.children.length > 0
 
   readonly property var pinnedItems: TrayPins.pinnedItems
   readonly property var hiddenItems: TrayPins.hiddenItems
+
+  // A context menu is a window of its own, so it takes the focus from the bar and the focus grab below would dismiss the popup the icon is in. The popup stays while a menu is open and goes with it
+  property bool menuOpen: false
+
+  function updateMenuOpen(): void {
+    let open = false;
+    for (const repeater of [pinnedRepeater, hiddenRepeater]) {
+      for (let position = 0; position < repeater.count; position++)
+        open = open || (repeater.itemAt(position) as TrayItem).menuOpen;
+    }
+    menuOpen = open;
+  }
+
+  onMenuOpenChanged: {
+    if (!menuOpen)
+      overflowOpen = false;
+  }
 
   implicitWidth: capsule.implicitWidth
   implicitHeight: capsule.implicitHeight
@@ -110,6 +128,8 @@ Item {
         trayItem: modelData
         overlay: dragLayer
         group: "pinned"
+
+        onMenuOpenChanged: root.updateMenuOpen()
       }
     }
 
@@ -184,6 +204,8 @@ Item {
           trayItem: modelData
           overlay: dragLayer
           group: "hidden"
+
+          onMenuOpenChanged: root.updateMenuOpen()
         }
       }
     }
@@ -215,6 +237,9 @@ Item {
   HyprlandFocusGrab {
     active: root.overflowOpen
     windows: [root.QsWindow.window]
-    onCleared: root.overflowOpen = false
+    onCleared: {
+      if (!root.menuOpen)
+        root.overflowOpen = false;
+    }
   }
 }
