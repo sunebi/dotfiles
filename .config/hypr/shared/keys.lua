@@ -32,9 +32,8 @@ return {
   colorPicker = "SUPER + SHIFT + C",
   dictation = "SUPER + O",
 
-  wallpaperPicker = "SUPER + CTRL + T",
-  wallpaperRandom = "SUPER + CTRL + ALT + T",
-  themePicker = "SUPER + CTRL + P",
+  wallpaperPicker = "SUPER + CTRL + W",
+  themePicker = "SUPER + CTRL + T",
   -- Three modifiers keep a stray press from flashing a light theme at night; no ALT, because ALT + SHIFT switches the layout
   themeToggle = "SUPER + CTRL + SHIFT + D",
 

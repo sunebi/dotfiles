@@ -4,7 +4,7 @@
 
 - `hyprland.lua` only holds the ordered `require("hyprland.*")` calls. Modules live in `hyprland/`, one per Hyprland wiki section.
 - `shared/keys.lua` holds the key chords and `shared/apps.lua` the applications, both used by `hyprland/binds.lua`. Binds are grouped into named blocks (Launcher, Apps, Session, Windows, Workspaces, Utils, Wallpaper, Brightness, Media, Volume).
-- Media keys and wallpaper binds call the shell through `qs -c sunebi ipc call <target> <function>` (`media`: `toggle`, `next`, `previous`; `wallpaper`: `toggle`, `random`; `session`: `toggle`, on `CTRL + ALT + Delete`; `theme`: `toggle`, on `SUPER + CTRL + P`), so there is no `playerctl` dependency. They only work while the shell runs.
+- Media keys and wallpaper binds call the shell through `qs -c sunebi ipc call <target> <function>` (`media`: `toggle`, `next`, `previous`; `wallpaper`: `toggle`, on `SUPER + CTRL + W`; `session`: `toggle`, on `CTRL + ALT + Delete`; `theme`: `toggle`, on `SUPER + CTRL + T`), so there is no `playerctl` dependency. They only work while the shell runs.
 
 The light/dark switch is `scripts/toggle-theme.sh` on `SUPER + CTRL + SHIFT + D`. It flips `color-scheme` and `gtk-theme` in gsettings (stored in dconf, outside the repo), so a fresh machine starts light until it runs once. `QT_QPA_PLATFORMTHEME` is deliberately unset so Qt follows the portal's color scheme.
 

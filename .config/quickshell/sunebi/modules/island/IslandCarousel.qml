@@ -15,10 +15,13 @@ FocusScope {
   property int startIndex: 0
   // Draws the card instead of the picture. It sits in a Loader whose row property is the row of the model and whose selected property says whether the card is the selected one
   property Component cardContent: null
+  // Offers a button in the footer that asks for a random item, the wallpapers use it
+  property bool shuffleEnabled: false
   property bool active: false
   property int currentIndex: 0
 
   signal chosen(int index)
+  signal shuffleRequested
   signal dismissed
   // False for the moment the carousel opens, so the strip and the cards are put in place instead of sliding there from where the last use left them
   property bool animated: true
@@ -183,7 +186,7 @@ FocusScope {
   StyledText {
     anchors.left: parent.left
     anchors.leftMargin: root.sideMargin
-    anchors.right: counter.left
+    anchors.right: root.shuffleEnabled ? shuffleButton.left : counter.left
     anchors.rightMargin: Theme.islandPickerPadding
     anchors.bottom: parent.bottom
     anchors.bottomMargin: root.verticalMargin
@@ -203,5 +206,42 @@ FocusScope {
     color: Colors.mutedForeground
     font.pixelSize: Theme.statusLabelFontSize
     text: (root.currentIndex + 1) + " / " + root.count
+  }
+
+  // SF Symbols private use glyph of SF Pro Text: shuffle
+  Item {
+    id: shuffleButton
+
+    anchors.right: counter.left
+    anchors.rightMargin: Theme.spacing * 2
+    anchors.verticalCenter: counter.verticalCenter
+    width: Theme.islandPickerFooterHeight
+    height: Theme.islandPickerFooterHeight
+    visible: root.shuffleEnabled
+
+    StyledText {
+      anchors.centerIn: parent
+      color: shuffleArea.containsMouse ? Colors.foreground : Colors.mutedForeground
+      font.pixelSize: Theme.statusLabelFontSize + 2
+      text: "\u{10029D}"
+
+      Behavior on color {
+        ColorAnimation {
+          duration: Theme.indicatorDuration / 2
+        }
+      }
+    }
+
+    MouseArea {
+      id: shuffleArea
+
+      // A little larger than the glyph, the footer is a small target
+      anchors.fill: parent
+      anchors.margins: -4
+      hoverEnabled: true
+      cursorShape: Qt.PointingHandCursor
+
+      onClicked: root.shuffleRequested()
+    }
   }
 }

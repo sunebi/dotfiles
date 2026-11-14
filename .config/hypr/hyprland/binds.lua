@@ -82,7 +82,6 @@ bind(keys.dictation, hl.dsp.exec_cmd(apps.dictation)) -- Handy cannot grab globa
 
 -- Wallpaper
 bind(keys.wallpaperPicker, hl.dsp.exec_cmd("qs -c sunebi ipc call wallpaper toggle"))
-bind(keys.wallpaperRandom, hl.dsp.exec_cmd("qs -c sunebi ipc call wallpaper random"))
 
 -- Theme
 bind(keys.themePicker, hl.dsp.exec_cmd("qs -c sunebi ipc call theme toggle"))

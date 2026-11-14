@@ -117,9 +117,14 @@ Capsule {
       model: Wallpaper.model
       startIndex: Wallpaper.indexOfCurrent()
       nameAt: index => Wallpaper.nameAt(index)
+      shuffleEnabled: true
 
       onChosen: index => {
         Wallpaper.apply(Wallpaper.pathAt(index));
+        Wallpaper.pickerOpen = false;
+      }
+      onShuffleRequested: {
+        Wallpaper.random();
         Wallpaper.pickerOpen = false;
       }
       onDismissed: Wallpaper.pickerOpen = false

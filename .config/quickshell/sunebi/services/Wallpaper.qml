@@ -87,9 +87,5 @@ Singleton {
       Themes.pickerOpen = false;
       root.pickerOpen = !root.pickerOpen && files.count > 0;
     }
-
-    function random(): void {
-      root.random();
-    }
   }
 }
