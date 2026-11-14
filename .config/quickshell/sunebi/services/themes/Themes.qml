@@ -5,6 +5,10 @@ import Quickshell
 import Quickshell.Io
 import QtQuick
 
+import qs.services
+import qs.services.cursor
+import qs.services.wallpaper
+
 // The color themes of the shell, one JSON file each in the themes directory. The chosen one is kept in the shell state directory, Colors reads its colors
 Singleton {
   id: root

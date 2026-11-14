@@ -6,8 +6,11 @@ import Quickshell.Io
 import QtQuick
 
 import qs
+import qs.services
+import qs.services.themes
+import qs.services.wallpaper
 
-// The cursor theme of the user. The themes are found by scripts/xcursor_preview.py, which also draws the arrow of each one for the picker, the chosen one is kept in the shell state directory and set again when the shell starts
+// The cursor theme of the user. The themes are found by xcursor_preview.py next to it, which also draws the arrow of each one for the picker, the chosen one is kept in the shell state directory and set again when the shell starts
 Singleton {
   id: root
 
@@ -53,7 +56,7 @@ Singleton {
   Process {
     id: scanner
 
-    command: ["python3", "-I", Quickshell.shellPath("scripts/xcursor_preview.py"), Quickshell.cachePath("cursors")]
+    command: ["python3", "-I", Quickshell.shellPath("services/cursor/xcursor_preview.py"), Quickshell.cachePath("cursors")]
 
     stdout: SplitParser {
       onRead: line => root.pending = [...root.pending, line]

@@ -7,6 +7,9 @@ import Qt.labs.folderlistmodel
 import QtQuick
 
 import qs
+import qs.services
+import qs.services.cursor
+import qs.services.themes
 
 Singleton {
   id: root

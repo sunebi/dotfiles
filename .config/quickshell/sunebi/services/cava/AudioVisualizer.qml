@@ -9,6 +9,7 @@ import QtQml.Models
 import QtQuick
 
 import qs
+import qs.services
 
 Singleton {
   id: root
@@ -84,25 +85,16 @@ Singleton {
     objects: root.streams
   }
 
+  // cava.conf holds the settings, the shell fills in only what it knows. The stream to read is the one thing that changes while cava runs
+  FileView {
+    id: template
+
+    path: Quickshell.shellPath("services/cava/cava.conf")
+    blockLoading: true
+  }
+
   function config(source: string): string {
-    return `[general]
-bars = ${Config.visualizerBars}
-framerate = ${Config.visualizerFramerate}
-autosens = 1
-sensitivity = 150
-[input]
-method = pipewire
-source = ${source}
-[smoothing]
-noise_reduction = 25
-[output]
-method = raw
-raw_target = /dev/stdout
-data_format = ascii
-ascii_max_range = 100
-bar_delimiter = 59
-frame_delimiter = 10
-`;
+    return template.text().replace("@bars@", Config.visualizerBars).replace("@framerate@", Config.visualizerFramerate).replace("@source@", source);
   }
 
   Timer {
