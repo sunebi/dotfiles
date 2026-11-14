@@ -85,6 +85,7 @@ Singleton {
     function toggle(): void {
       SessionMenu.open = false;
       CursorTheme.pickerOpen = false;
+      Themes.pickerOpen = false;
       root.pickerOpen = !root.pickerOpen && files.count > 0;
     }
 

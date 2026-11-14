@@ -57,6 +57,7 @@ Singleton {
     function toggle(): void {
       Wallpaper.pickerOpen = false;
       CursorTheme.pickerOpen = false;
+      Themes.pickerOpen = false;
       root.open = !root.open;
     }
   }

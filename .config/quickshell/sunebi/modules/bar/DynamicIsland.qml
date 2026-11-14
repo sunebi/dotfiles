@@ -6,7 +6,7 @@ import QtQuick
 import qs
 import qs.services
 
-// Always a pill that widens with its content, and opens downward into the session menu or the wallpaper carousel while one of them is open: small and empty while idle, wider for the cover and levels of the playing track, widest for the volume for a moment after it changed
+// Always a pill that widens with its content, and opens downward into the session menu or one of the carousels while one of them is open: small and empty while idle, wider for the cover and levels of the playing track, widest for the volume for a moment after it changed
 Capsule {
   id: root
 
@@ -17,8 +17,9 @@ Capsule {
   readonly property bool sessionVisible: SessionMenu.open && focused
   readonly property bool pickerVisible: Wallpaper.pickerOpen && focused
   readonly property bool cursorVisible: CursorTheme.pickerOpen && focused
-  // Any of the three, the bar needs the keyboard as long as it lasts
-  readonly property bool expanded: sessionVisible || pickerVisible || cursorVisible
+  readonly property bool themeVisible: Themes.pickerOpen && focused
+  // Any of the four, the bar needs the keyboard as long as it lasts
+  readonly property bool expanded: sessionVisible || pickerVisible || cursorVisible || themeVisible
   readonly property bool volumeVisible: !expanded && volumeTimer.running
   readonly property bool wallpaperVisible: !expanded && !volumeVisible && wallpaperTimer.running
   readonly property bool mediaVisible: !expanded && !volumeVisible && !wallpaperVisible && Media.player !== null
@@ -26,8 +27,8 @@ Capsule {
   // The sound system reports its first values while the shell starts, those are not changes of the user
   property bool armed: false
 
-  implicitWidth: sessionVisible ? Theme.islandSessionWidth : (pickerVisible || cursorVisible) ? Theme.islandPickerWidth : volumeVisible ? Theme.islandVolumeWidth : wallpaperVisible ? Theme.islandWallpaperWidth : mediaVisible ? Theme.islandMediaWidth : Theme.islandIdleWidth
-  implicitHeight: sessionVisible ? Theme.islandSessionHeight : (pickerVisible || cursorVisible) ? Theme.islandPickerHeight : Theme.barHeight
+  implicitWidth: sessionVisible ? Theme.islandSessionWidth : (pickerVisible || cursorVisible || themeVisible) ? Theme.islandPickerWidth : volumeVisible ? Theme.islandVolumeWidth : wallpaperVisible ? Theme.islandWallpaperWidth : mediaVisible ? Theme.islandMediaWidth : Theme.islandIdleWidth
+  implicitHeight: sessionVisible ? Theme.islandSessionHeight : (pickerVisible || cursorVisible || themeVisible) ? Theme.islandPickerHeight : Theme.barHeight
   radius: Math.min(height / 2, Theme.islandExpandedRadius)
   paddingX: Theme.islandPaddingX
 
@@ -148,6 +149,32 @@ Capsule {
         CursorTheme.pickerOpen = false;
       }
       onDismissed: CursorTheme.pickerOpen = false
+
+      Behavior on opacity {
+        NumberAnimation {
+          duration: Theme.indicatorDuration
+          easing.type: Easing.OutCubic
+        }
+      }
+    }
+
+    IslandCarousel {
+      anchors.fill: parent
+      active: root.themeVisible
+      opacity: root.themeVisible ? 1 : 0
+      visible: opacity > 0
+      model: Themes.model
+      startIndex: Themes.indexOfCurrent()
+      nameAt: index => Themes.nameAt(index)
+      cardContent: Component {
+        ThemeCard {}
+      }
+
+      onChosen: index => {
+        Themes.apply(Themes.idAt(index));
+        Themes.pickerOpen = false;
+      }
+      onDismissed: Themes.pickerOpen = false
 
       Behavior on opacity {
         NumberAnimation {

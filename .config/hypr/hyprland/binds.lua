@@ -86,6 +86,7 @@ bind(keys.wallpaperRandom, hl.dsp.exec_cmd("qs -c sunebi ipc call wallpaper rand
 bind(keys.cursorPicker, hl.dsp.exec_cmd("qs -c sunebi ipc call cursor toggle"))
 
 -- Theme
+bind(keys.themePicker, hl.dsp.exec_cmd("qs -c sunebi ipc call theme toggle"))
 bind(keys.themeToggle, hl.dsp.exec_cmd("~/.config/hypr/scripts/toggle-theme.sh"))
 
 -- Brightness

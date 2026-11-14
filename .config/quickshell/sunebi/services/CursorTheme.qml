@@ -102,6 +102,7 @@ Singleton {
     function toggle(): void {
       Wallpaper.pickerOpen = false;
       SessionMenu.open = false;
+      Themes.pickerOpen = false;
       root.refresh();
       root.pickerOpen = !root.pickerOpen && themes.count > 0;
     }

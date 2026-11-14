@@ -4,7 +4,7 @@ import QtQuick
 import qs
 import qs.services
 
-// The island's content while it is open to choose one of many pictures, the wallpapers or the cursor themes. The model has a filePath role with the picture of every item. Only the selected card is full size, no outlines. The strip stops at its ends instead of centering the first and the last card, so there is no empty space beside it
+// The island's content while it is open to choose one of many pictures, the wallpapers or the cursor themes, or one of the color themes, which draw their own cards. The model has a filePath role with the picture of every item. Only the selected card is full size, no outlines. The strip stops at its ends instead of centering the first and the last card, so there is no empty space beside it
 FocusScope {
   id: root
 
@@ -15,6 +15,8 @@ FocusScope {
   property int startIndex: 0
   property int fillMode: Image.PreserveAspectCrop
   property int imagePadding: 0
+  // Draws the card instead of the picture. It sits in a Loader whose row property is the row of the model and whose selected property says whether the card is the selected one
+  property Component cardContent: null
   property bool active: false
   property int currentIndex: 0
 
@@ -100,6 +102,7 @@ FocusScope {
 
           required property int index
           required property string filePath
+          required property var model
           readonly property bool selected: index === root.currentIndex
 
           width: selected ? Theme.islandPickerSelectedCardWidth : Theme.islandPickerCardWidth
@@ -138,7 +141,16 @@ FocusScope {
               // A fixed size, so the decoder does not run again while the card grows
               sourceSize.height: Theme.islandPickerSelectedCardWidth * 9 / 16 * 2
               // Only the cards around the selected one are loaded, a folder can hold many more than are ever shown
-              source: Math.abs(cell.index - root.currentIndex) <= 4 ? "file://" + cell.filePath : ""
+              source: root.cardContent === null && Math.abs(cell.index - root.currentIndex) <= 4 ? "file://" + cell.filePath : ""
+            }
+
+            Loader {
+              readonly property var row: cell.model
+              readonly property bool selected: cell.selected
+
+              anchors.fill: parent
+              active: root.cardContent !== null
+              sourceComponent: root.cardContent
             }
           }
         }
