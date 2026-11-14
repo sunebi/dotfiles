@@ -30,6 +30,7 @@ return {
 
   screenshot = { "SUPER + SHIFT + S", "Print" },
   colorPicker = "SUPER + SHIFT + C",
+  dictation = "SUPER + O",
 
   wallpaperPicker = "SUPER + CTRL + T",
   wallpaperRandom = "SUPER + CTRL + ALT + T",

@@ -7,4 +7,5 @@ return {
   launcher = "vicinae toggle",
   clipboard = "vicinae vicinae://launch/clipboard/history",
   colorPicker = "hyprpicker -a",
+  dictation = "handy --toggle-transcription",
 }

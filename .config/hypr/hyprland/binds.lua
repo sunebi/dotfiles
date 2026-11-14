@@ -78,6 +78,7 @@ bind(keys.scratchpad, hl.dsp.workspace.toggle_special("magic"))
 -- Utils
 bind(keys.screenshot, hl.dsp.exec_cmd("hyprshot -m region -z"))
 bind(keys.colorPicker, hl.dsp.exec_cmd(apps.colorPicker))
+bind(keys.dictation, hl.dsp.exec_cmd(apps.dictation)) -- Handy cannot grab global keys on Wayland, so the compositor owns the key
 
 -- Wallpaper
 bind(keys.wallpaperPicker, hl.dsp.exec_cmd("qs -c sunebi ipc call wallpaper toggle"))
