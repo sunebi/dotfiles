@@ -35,6 +35,8 @@ return {
   wallpaperPicker = "SUPER + CTRL + T",
   wallpaperRandom = "SUPER + CTRL + ALT + T",
   cursorPicker = "SUPER + CTRL + Y",
+  -- Three modifiers keep a stray press from flashing a light theme at night; no ALT, because ALT + SHIFT switches the layout
+  themeToggle = "SUPER + CTRL + SHIFT + D",
 
   volumeUp = "XF86AudioRaiseVolume",
   volumeDown = "XF86AudioLowerVolume",

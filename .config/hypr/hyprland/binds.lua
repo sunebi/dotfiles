@@ -85,6 +85,9 @@ bind(keys.wallpaperPicker, hl.dsp.exec_cmd("qs -c sunebi ipc call wallpaper togg
 bind(keys.wallpaperRandom, hl.dsp.exec_cmd("qs -c sunebi ipc call wallpaper random"))
 bind(keys.cursorPicker, hl.dsp.exec_cmd("qs -c sunebi ipc call cursor toggle"))
 
+-- Theme
+bind(keys.themeToggle, hl.dsp.exec_cmd("~/.config/hypr/scripts/toggle-theme.sh"))
+
 -- Brightness
 bind(keys.brightnessUp, hl.dsp.exec_cmd("brightnessctl -e4 -n2 set 5%+"), lockedRepeating)
 bind(keys.brightnessDown, hl.dsp.exec_cmd("brightnessctl -e4 -n2 set 5%-"), lockedRepeating)

@@ -6,6 +6,8 @@
 - `shared/keys.lua` holds the key chords and `shared/apps.lua` the applications, both used by `hyprland/binds.lua`. Binds are grouped into named blocks (Launcher, Apps, Session, Windows, Workspaces, Utils, Wallpaper, Brightness, Media, Volume).
 - Media keys and wallpaper binds call the shell through `qs -c sunebi ipc call <target> <function>` (`media`: `toggle`, `next`, `previous`; `wallpaper`: `toggle`, `random`; `session`: `toggle`, on `CTRL + ALT + Delete`; `cursor`: `toggle`, on `SUPER + CTRL + Y`), so there is no `playerctl` dependency. They only work while the shell runs.
 
+The light/dark switch is `scripts/toggle-theme.sh` on `SUPER + CTRL + SHIFT + D`. It flips `color-scheme` and `gtk-theme` in gsettings (stored in dconf, outside the repo), so a fresh machine starts light until it runs once. `QT_QPA_PLATFORMTHEME` is deliberately unset so Qt follows the portal's color scheme.
+
 ## Conventions
 
 - Dispatchers use Lua syntax in 0.57: `hl.dsp.focus({ workspace = 3 })`, not the old string form.
