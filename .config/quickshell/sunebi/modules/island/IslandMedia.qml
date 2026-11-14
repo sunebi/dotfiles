@@ -8,6 +8,8 @@ import qs.services.cava
 
 Item {
   ClippingRectangle {
+    id: cover
+
     anchors.left: parent.left
     anchors.verticalCenter: parent.verticalCenter
     width: height
@@ -18,6 +20,15 @@ Item {
     CoverArt {
       anchors.fill: parent
       source: Media.player?.trackArtUrl ?? ""
+    }
+
+    // A barely visible edge, so a cover as light as the island still has an outline. The text color keeps it visible in both color schemes
+    Rectangle {
+      anchors.fill: parent
+      radius: cover.radius
+      color: "transparent"
+      border.width: 1
+      border.color: Qt.alpha(Colors.foreground, 0.12)
     }
   }
 
