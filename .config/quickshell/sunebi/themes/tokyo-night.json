@@ -1,0 +1,43 @@
+{
+  "name": "Tokyo Night",
+  "light": {
+    "background": "#E1E2E7",
+    "foreground": "#3760BF",
+    "card": "#D0D5E3",
+    "cardForeground": "#3760BF",
+    "popover": "#D0D5E3",
+    "popoverForeground": "#3760BF",
+    "primary": "#2E7DE9",
+    "primaryForeground": "#E1E2E7",
+    "secondary": "#C4C8DA",
+    "secondaryForeground": "#3760BF",
+    "muted": "#C4C8DA",
+    "mutedForeground": "#6172B0",
+    "accent": "#B6BFE2",
+    "accentForeground": "#3760BF",
+    "destructive": "#F52A65",
+    "border": "#C4C8DA",
+    "input": "#B6BFE2",
+    "ring": "#848CB5"
+  },
+  "dark": {
+    "background": "#1A1B26",
+    "foreground": "#C0CAF5",
+    "card": "#16161E",
+    "cardForeground": "#C0CAF5",
+    "popover": "#16161E",
+    "popoverForeground": "#C0CAF5",
+    "primary": "#7AA2F7",
+    "primaryForeground": "#1A1B26",
+    "secondary": "#292E42",
+    "secondaryForeground": "#C0CAF5",
+    "muted": "#292E42",
+    "mutedForeground": "#737AA2",
+    "accent": "#3B4261",
+    "accentForeground": "#C0CAF5",
+    "destructive": "#F7768E",
+    "border": "#292E42",
+    "input": "#3B4261",
+    "ring": "#565F89"
+  }
+}

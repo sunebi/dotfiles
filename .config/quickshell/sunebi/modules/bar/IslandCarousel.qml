@@ -119,7 +119,7 @@ FocusScope {
             width: parent.width
             height: width * 9 / 16
             radius: Theme.islandPickerCardRadius
-            color: Theme.muted
+            color: Colors.muted
             opacity: cell.selected ? 1 : 0.6
 
             Behavior on opacity {
@@ -178,7 +178,7 @@ FocusScope {
     anchors.rightMargin: Theme.islandPickerPadding
     anchors.bottom: parent.bottom
     anchors.bottomMargin: root.verticalMargin
-    color: Theme.mutedForeground
+    color: Colors.mutedForeground
     font.pixelSize: Theme.statusLabelFontSize
     elide: Text.ElideRight
     text: root.nameAt(root.currentIndex)
@@ -191,7 +191,7 @@ FocusScope {
     anchors.rightMargin: root.sideMargin
     anchors.bottom: parent.bottom
     anchors.bottomMargin: root.verticalMargin
-    color: Theme.mutedForeground
+    color: Colors.mutedForeground
     font.pixelSize: Theme.statusLabelFontSize
     text: (root.currentIndex + 1) + " / " + root.count
   }

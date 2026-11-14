@@ -1,0 +1,43 @@
+{
+  "name": "Default",
+  "light": {
+    "background": "#FFFFFF",
+    "foreground": "#0A0A0A",
+    "card": "#FFFFFF",
+    "cardForeground": "#0A0A0A",
+    "popover": "#FFFFFF",
+    "popoverForeground": "#0A0A0A",
+    "primary": "#171717",
+    "primaryForeground": "#FAFAFA",
+    "secondary": "#F5F5F5",
+    "secondaryForeground": "#171717",
+    "muted": "#F5F5F5",
+    "mutedForeground": "#737373",
+    "accent": "#F5F5F5",
+    "accentForeground": "#171717",
+    "destructive": "#E7000B",
+    "border": "#E5E5E5",
+    "input": "#E5E5E5",
+    "ring": "#A1A1A1"
+  },
+  "dark": {
+    "background": "#0A0A0A",
+    "foreground": "#FAFAFA",
+    "card": "#171717",
+    "cardForeground": "#FAFAFA",
+    "popover": "#171717",
+    "popoverForeground": "#FAFAFA",
+    "primary": "#E5E5E5",
+    "primaryForeground": "#171717",
+    "secondary": "#262626",
+    "secondaryForeground": "#FAFAFA",
+    "muted": "#262626",
+    "mutedForeground": "#A1A1A1",
+    "accent": "#262626",
+    "accentForeground": "#FAFAFA",
+    "destructive": "#FF6467",
+    "border": "#1AFFFFFF",
+    "input": "#26FFFFFF",
+    "ring": "#737373"
+  }
+}

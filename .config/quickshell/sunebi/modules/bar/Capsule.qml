@@ -9,7 +9,7 @@ Rectangle {
   implicitWidth: row.implicitWidth + 2 * paddingX
   implicitHeight: Theme.barHeight
   radius: height / 2
-  color: Theme.background
+  color: Colors.background
 
   Row {
     id: row

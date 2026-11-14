@@ -3,46 +3,8 @@ pragma Singleton
 import Quickshell
 import QtQuick
 
-import qs.services
-
-// QML hex colors are #AARRGGBB, so the CSS #RRGGBBAA values with alpha are written reordered
+// The sizes and fonts of the shell. The colors come from the chosen theme file through Colors
 Singleton {
-  readonly property bool dark: ColorScheme.dark
-
-  readonly property color background: dark ? "#0A0A0A" : "#FFFFFF"
-  readonly property color foreground: dark ? "#FAFAFA" : "#0A0A0A"
-  readonly property color card: dark ? "#171717" : "#FFFFFF"
-  readonly property color cardForeground: dark ? "#FAFAFA" : "#0A0A0A"
-  readonly property color popover: dark ? "#171717" : "#FFFFFF"
-  readonly property color popoverForeground: dark ? "#FAFAFA" : "#0A0A0A"
-  readonly property color primary: dark ? "#E5E5E5" : "#171717"
-  readonly property color primaryForeground: dark ? "#171717" : "#FAFAFA"
-  readonly property color secondary: dark ? "#262626" : "#F5F5F5"
-  readonly property color secondaryForeground: dark ? "#FAFAFA" : "#171717"
-  readonly property color muted: dark ? "#262626" : "#F5F5F5"
-  readonly property color mutedForeground: dark ? "#A1A1A1" : "#737373"
-  readonly property color accent: dark ? "#262626" : "#F5F5F5"
-  readonly property color accentForeground: dark ? "#FAFAFA" : "#171717"
-  readonly property color destructive: dark ? "#FF6467" : "#E7000B"
-  readonly property color border: dark ? "#1AFFFFFF" : "#E5E5E5"
-  readonly property color input: dark ? "#26FFFFFF" : "#E5E5E5"
-  readonly property color ring: dark ? "#737373" : "#A1A1A1"
-
-  readonly property color chart1: "#D4D4D4"
-  readonly property color chart2: "#737373"
-  readonly property color chart3: "#525252"
-  readonly property color chart4: "#404040"
-  readonly property color chart5: "#262626"
-
-  readonly property color sidebar: dark ? "#171717" : "#FAFAFA"
-  readonly property color sidebarForeground: dark ? "#FAFAFA" : "#0A0A0A"
-  readonly property color sidebarPrimary: dark ? "#1447E6" : "#171717"
-  readonly property color sidebarPrimaryForeground: "#FAFAFA"
-  readonly property color sidebarAccent: dark ? "#262626" : "#F5F5F5"
-  readonly property color sidebarAccentForeground: dark ? "#FAFAFA" : "#171717"
-  readonly property color sidebarBorder: dark ? "#1AFFFFFF" : "#E5E5E5"
-  readonly property color sidebarRing: dark ? "#737373" : "#A1A1A1"
-
   // 0.625rem
   readonly property int radius: 10
 

@@ -1,0 +1,43 @@
+{
+  "name": "Rosé Pine",
+  "light": {
+    "background": "#FAF4ED",
+    "foreground": "#575279",
+    "card": "#FFFAF3",
+    "cardForeground": "#575279",
+    "popover": "#FFFAF3",
+    "popoverForeground": "#575279",
+    "primary": "#907AA9",
+    "primaryForeground": "#FAF4ED",
+    "secondary": "#F2E9E1",
+    "secondaryForeground": "#575279",
+    "muted": "#F2E9E1",
+    "mutedForeground": "#797593",
+    "accent": "#DFDAD9",
+    "accentForeground": "#575279",
+    "destructive": "#B4637A",
+    "border": "#DFDAD9",
+    "input": "#DFDAD9",
+    "ring": "#9893A5"
+  },
+  "dark": {
+    "background": "#191724",
+    "foreground": "#E0DEF4",
+    "card": "#1F1D2E",
+    "cardForeground": "#E0DEF4",
+    "popover": "#1F1D2E",
+    "popoverForeground": "#E0DEF4",
+    "primary": "#C4A7E7",
+    "primaryForeground": "#191724",
+    "secondary": "#26233A",
+    "secondaryForeground": "#E0DEF4",
+    "muted": "#26233A",
+    "mutedForeground": "#908CAA",
+    "accent": "#403D52",
+    "accentForeground": "#E0DEF4",
+    "destructive": "#EB6F92",
+    "border": "#26233A",
+    "input": "#403D52",
+    "ring": "#6E6A86"
+  }
+}

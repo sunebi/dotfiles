@@ -1,0 +1,43 @@
+{
+  "name": "Nord",
+  "light": {
+    "background": "#ECEFF4",
+    "foreground": "#2E3440",
+    "card": "#E5E9F0",
+    "cardForeground": "#2E3440",
+    "popover": "#E5E9F0",
+    "popoverForeground": "#2E3440",
+    "primary": "#5E81AC",
+    "primaryForeground": "#ECEFF4",
+    "secondary": "#D8DEE9",
+    "secondaryForeground": "#2E3440",
+    "muted": "#D8DEE9",
+    "mutedForeground": "#4C566A",
+    "accent": "#D8DEE9",
+    "accentForeground": "#2E3440",
+    "destructive": "#BF616A",
+    "border": "#D8DEE9",
+    "input": "#D8DEE9",
+    "ring": "#81A1C1"
+  },
+  "dark": {
+    "background": "#2E3440",
+    "foreground": "#ECEFF4",
+    "card": "#3B4252",
+    "cardForeground": "#ECEFF4",
+    "popover": "#3B4252",
+    "popoverForeground": "#ECEFF4",
+    "primary": "#88C0D0",
+    "primaryForeground": "#2E3440",
+    "secondary": "#3B4252",
+    "secondaryForeground": "#ECEFF4",
+    "muted": "#434C5E",
+    "mutedForeground": "#9AA5BA",
+    "accent": "#434C5E",
+    "accentForeground": "#ECEFF4",
+    "destructive": "#BF616A",
+    "border": "#434C5E",
+    "input": "#434C5E",
+    "ring": "#4C566A"
+  }
+}

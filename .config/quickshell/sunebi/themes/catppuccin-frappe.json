@@ -1,0 +1,23 @@
+{
+  "name": "Catppuccin Frappé",
+  "dark": {
+    "background": "#303446",
+    "foreground": "#C6D0F5",
+    "card": "#292C3C",
+    "cardForeground": "#C6D0F5",
+    "popover": "#292C3C",
+    "popoverForeground": "#C6D0F5",
+    "primary": "#CA9EE6",
+    "primaryForeground": "#232634",
+    "secondary": "#414559",
+    "secondaryForeground": "#C6D0F5",
+    "muted": "#414559",
+    "mutedForeground": "#A5ADCE",
+    "accent": "#51576D",
+    "accentForeground": "#C6D0F5",
+    "destructive": "#E78284",
+    "border": "#414559",
+    "input": "#51576D",
+    "ring": "#737994"
+  }
+}

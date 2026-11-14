@@ -76,7 +76,7 @@ Item {
       StyledText {
         anchors.centerIn: parent
         text: root.chevronDown
-        color: Theme.foreground
+        color: Colors.foreground
         font.weight: Theme.trayFontWeight
         rotation: root.overflowOpen ? 180 : 0
 
@@ -116,7 +116,7 @@ Item {
       visible: root.pinnedItems.length + root.hiddenItems.length > 0
       implicitWidth: 1
       implicitHeight: Theme.trayIconSize
-      color: Theme.border
+      color: Colors.border
     }
 
     StatusLabel {
@@ -147,7 +147,7 @@ Item {
     width: visible ? Math.max(overflowRow.implicitWidth, Theme.trayIconSize) + 2 * Theme.spacing : 0
     height: visible ? Theme.trayPopupHeight : 0
     visible: opacity > 0
-    color: Theme.popover
+    color: Colors.popover
     radius: Theme.radius
 
     Behavior on opacity {

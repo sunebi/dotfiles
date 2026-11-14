@@ -1,0 +1,23 @@
+{
+  "name": "Dracula",
+  "dark": {
+    "background": "#282A36",
+    "foreground": "#F8F8F2",
+    "card": "#21222C",
+    "cardForeground": "#F8F8F2",
+    "popover": "#21222C",
+    "popoverForeground": "#F8F8F2",
+    "primary": "#BD93F9",
+    "primaryForeground": "#282A36",
+    "secondary": "#44475A",
+    "secondaryForeground": "#F8F8F2",
+    "muted": "#44475A",
+    "mutedForeground": "#6272A4",
+    "accent": "#44475A",
+    "accentForeground": "#F8F8F2",
+    "destructive": "#FF5555",
+    "border": "#44475A",
+    "input": "#44475A",
+    "ring": "#6272A4"
+  }
+}

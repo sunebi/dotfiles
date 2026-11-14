@@ -1,0 +1,23 @@
+{
+  "name": "Catppuccin Macchiato",
+  "dark": {
+    "background": "#24273A",
+    "foreground": "#CAD3F5",
+    "card": "#1E2030",
+    "cardForeground": "#CAD3F5",
+    "popover": "#1E2030",
+    "popoverForeground": "#CAD3F5",
+    "primary": "#C6A0F6",
+    "primaryForeground": "#181926",
+    "secondary": "#363A4F",
+    "secondaryForeground": "#CAD3F5",
+    "muted": "#363A4F",
+    "mutedForeground": "#A5ADCB",
+    "accent": "#494D64",
+    "accentForeground": "#CAD3F5",
+    "destructive": "#ED8796",
+    "border": "#363A4F",
+    "input": "#494D64",
+    "ring": "#6E738D"
+  }
+}

@@ -26,7 +26,7 @@ Item {
     height: Theme.islandTrackHeight
     radius: height / 2
     opacity: Audio.muted ? 0.5 : 1
-    color: Theme.muted
+    color: Colors.muted
 
     Rectangle {
       // The ratio is animated and not the width, so the fill follows the track while the island widens instead of growing from zero
@@ -35,7 +35,7 @@ Item {
       width: parent.width * shown
       height: parent.height
       radius: height / 2
-      color: Theme.primary
+      color: Colors.primary
 
       Behavior on shown {
         NumberAnimation {

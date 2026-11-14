@@ -3,7 +3,7 @@ import QtQuick
 import qs
 
 Text {
-  color: Theme.foreground
+  color: Colors.foreground
   font.family: Theme.fontText
   font.pixelSize: Theme.fontSize
 

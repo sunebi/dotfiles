@@ -14,8 +14,8 @@ Item {
 
   readonly property bool high: value >= Config.resourceHighLoad
   // Not readonly, a Behavior cannot animate a read-only property
-  property color tint: high ? Theme.destructive : Theme.mutedForeground
-  property color fillTint: high ? Theme.destructive : Theme.primary
+  property color tint: high ? Colors.destructive : Colors.mutedForeground
+  property color fillTint: high ? Colors.destructive : Colors.primary
   // Follows the sample on a spring so the ring glides to every new value and settles with a small bounce instead of jumping
   property real shown: value
 
@@ -47,7 +47,7 @@ Item {
     radius: width / 2
     color: "transparent"
     border.width: Theme.resourceRingWidth
-    border.color: Theme.secondary
+    border.color: Colors.secondary
   }
 
   Shape {

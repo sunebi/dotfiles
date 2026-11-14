@@ -13,7 +13,7 @@ Item {
     width: Math.round(height * 16 / 9)
     height: parent.height
     radius: Theme.radius / 2
-    color: Theme.muted
+    color: Colors.muted
 
     CoverArt {
       anchors.fill: parent

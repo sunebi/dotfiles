@@ -35,7 +35,7 @@ Capsule {
       width: Theme.workspaceSize
       height: Theme.workspaceSize
       radius: height / 2
-      color: Theme.muted
+      color: Colors.muted
       opacity: 0.5
     }
 
@@ -45,7 +45,7 @@ Capsule {
       width: Theme.workspaceSize
       height: Theme.workspaceSize
       radius: height / 2
-      color: Theme.secondary
+      color: Colors.secondary
 
       Behavior on x {
         NumberAnimation {
@@ -72,9 +72,9 @@ Capsule {
         text: workspaceId
         color: {
           if (index === root.activeIndex)
-            return Theme.secondaryForeground;
+            return Colors.secondaryForeground;
 
-          return root.isOccupied(workspaceId) ? Theme.foreground : Theme.mutedForeground;
+          return root.isOccupied(workspaceId) ? Colors.foreground : Colors.mutedForeground;
         }
       }
     }

@@ -1,0 +1,43 @@
+{
+  "name": "Solarized",
+  "light": {
+    "background": "#FDF6E3",
+    "foreground": "#586E75",
+    "card": "#EEE8D5",
+    "cardForeground": "#586E75",
+    "popover": "#EEE8D5",
+    "popoverForeground": "#586E75",
+    "primary": "#268BD2",
+    "primaryForeground": "#FDF6E3",
+    "secondary": "#EEE8D5",
+    "secondaryForeground": "#586E75",
+    "muted": "#EEE8D5",
+    "mutedForeground": "#93A1A1",
+    "accent": "#E4DDC8",
+    "accentForeground": "#586E75",
+    "destructive": "#DC322F",
+    "border": "#EEE8D5",
+    "input": "#EEE8D5",
+    "ring": "#93A1A1"
+  },
+  "dark": {
+    "background": "#002B36",
+    "foreground": "#93A1A1",
+    "card": "#073642",
+    "cardForeground": "#93A1A1",
+    "popover": "#073642",
+    "popoverForeground": "#93A1A1",
+    "primary": "#268BD2",
+    "primaryForeground": "#002B36",
+    "secondary": "#073642",
+    "secondaryForeground": "#93A1A1",
+    "muted": "#073642",
+    "mutedForeground": "#657B83",
+    "accent": "#0E4452",
+    "accentForeground": "#93A1A1",
+    "destructive": "#DC322F",
+    "border": "#073642",
+    "input": "#073642",
+    "ring": "#586E75"
+  }
+}

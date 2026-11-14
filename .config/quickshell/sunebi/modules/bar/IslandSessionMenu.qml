@@ -60,7 +60,7 @@ FocusScope {
     anchors.topMargin: root.verticalMargin
     anchors.horizontalCenter: parent.horizontalCenter
     height: Theme.islandSessionLineHeight
-    color: Theme.mutedForeground
+    color: Colors.mutedForeground
     font.weight: Font.DemiBold
     verticalAlignment: Text.AlignVCenter
     text: "Up " + DateTime.uptime
@@ -98,7 +98,7 @@ FocusScope {
     anchors.bottomMargin: root.verticalMargin
     anchors.horizontalCenter: parent.horizontalCenter
     height: Theme.islandSessionLineHeight
-    color: root.focusedAction.hold ? Theme.destructive : Theme.foreground
+    color: root.focusedAction.hold ? Colors.destructive : Colors.foreground
     font.weight: Font.DemiBold
     verticalAlignment: Text.AlignVCenter
     // A button that has to be held says so, nothing else tells it from the ones that act at once

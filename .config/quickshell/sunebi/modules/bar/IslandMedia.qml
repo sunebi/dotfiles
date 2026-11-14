@@ -11,7 +11,7 @@ Item {
     width: height
     height: parent.height
     radius: Theme.radius / 2
-    color: Theme.muted
+    color: Colors.muted
 
     CoverArt {
       anchors.fill: parent
@@ -36,7 +36,7 @@ Item {
         width: Theme.visualizerBarWidth
         height: Math.max(width, (AudioVisualizer.levels[index] ?? 0) * parent.height)
         radius: width / 2
-        color: Theme.foreground
+        color: Colors.foreground
 
         // About one and a half frames of cava, enough to blend its steps into motion
         Behavior on height {

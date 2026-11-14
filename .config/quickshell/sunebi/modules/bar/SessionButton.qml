@@ -40,7 +40,7 @@ Item {
     anchors.fill: parent
     radius: width / 2
     // Ghost: no background until the pointer or the keyboard is on the button, the alpha of the same color is animated so it does not pass through black
-    color: root.focused ? Theme.secondary : Qt.alpha(Theme.secondary, 0)
+    color: root.focused ? Colors.secondary : Qt.alpha(Colors.secondary, 0)
 
     Behavior on color {
       ColorAnimation {
@@ -52,7 +52,7 @@ Item {
     Rectangle {
       anchors.fill: parent
       radius: width / 2
-      color: Qt.alpha(Theme.destructive, 0.2)
+      color: Qt.alpha(Colors.destructive, 0.2)
       opacity: root.hold && root.focused ? 1 : 0
 
       Behavior on opacity {
@@ -65,7 +65,7 @@ Item {
 
   StyledText {
     anchors.centerIn: parent
-    color: root.hold && root.focused ? Theme.destructive : Theme.foreground
+    color: root.hold && root.focused ? Colors.destructive : Colors.foreground
     font.pixelSize: 16
     font.weight: Theme.trayFontWeight
     text: root.glyph
@@ -78,7 +78,7 @@ Item {
 
     ShapePath {
       fillColor: "transparent"
-      strokeColor: Theme.destructive
+      strokeColor: Colors.destructive
       strokeWidth: 2
       capStyle: ShapePath.RoundCap
 
