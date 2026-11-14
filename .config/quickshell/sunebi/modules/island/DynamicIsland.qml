@@ -7,8 +7,6 @@ import qs
 import qs.components
 import qs.services
 import qs.services.cursor
-import qs.services.themes
-import qs.services.wallpaper
 
 // Always a pill that widens with its content, and opens downward into the session menu or one of the carousels while one of them is open: small and empty while idle, wider for the cover and levels of the playing track, widest for the volume for a moment after it changed
 Capsule {

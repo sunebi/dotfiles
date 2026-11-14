@@ -3,7 +3,7 @@ import QtQuick
 
 import qs
 import qs.components
-import qs.services.wallpaper
+import qs.services
 
 Item {
   ClippingRectangle {

@@ -5,7 +5,6 @@ import Quickshell.Io
 import QtQuick
 
 import qs.services
-import qs.services.themes
 
 // The colors of the chosen theme for the system color scheme, the names are the keys of the theme files (shadcn tokens). apply() writes them, so a theme file that is edited while the shell runs shows at once
 Singleton {

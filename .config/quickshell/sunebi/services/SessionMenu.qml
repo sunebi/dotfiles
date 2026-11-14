@@ -6,8 +6,6 @@ import Quickshell.Io
 import QtQuick
 
 import qs.services.cursor
-import qs.services.themes
-import qs.services.wallpaper
 
 Singleton {
   id: root

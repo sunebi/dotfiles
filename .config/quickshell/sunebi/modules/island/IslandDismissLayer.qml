@@ -6,8 +6,6 @@ import QtQuick
 import qs
 import qs.services
 import qs.services.cursor
-import qs.services.themes
-import qs.services.wallpaper
 
 // While the wallpaper carousel, the cursor carousel, the theme carousel or the session menu is open this transparent window covers the whole screen, so a click anywhere outside of the island closes the menu whatever is under the pointer. The hole in its mask leaves the island itself to the bar below. The window exists only while a menu is open, so nothing stays blocked after it closes
 PanelWindow {
