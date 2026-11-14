@@ -53,6 +53,12 @@ Singleton {
   readonly property int spacing: 8
   readonly property int workspaceSize: 22
   readonly property int workspaceSpacing: 2
+  readonly property int resourceRingSize: 22
+  readonly property int resourceRingWidth: 2
+  readonly property int resourceGlyphSize: 10
+  // The ring follows the load on a spring: the higher the spring the faster it catches up, the lower the damping the longer it swings
+  readonly property real resourceSpring: 3
+  readonly property real resourceDamping: 0.3
   readonly property int trayIconSize: 16
   readonly property int trayPopupHeight: trayIconSize + 2 * spacing
   readonly property int dragThreshold: 4

@@ -27,6 +27,9 @@ PanelWindow {
   // Only the capsules take input, the transparent gaps between them pass clicks through
   mask: Region {
     Region {
+      item: resourceMonitor
+    }
+    Region {
       item: workspaces
     }
     Region {
@@ -47,6 +50,14 @@ PanelWindow {
     anchors.topMargin: Theme.barMarginTop
     anchors.left: parent.left
     anchors.leftMargin: Theme.barMarginX
+  }
+
+  ResourceMonitor {
+    id: resourceMonitor
+    anchors.top: parent.top
+    anchors.topMargin: Theme.barMarginTop
+    anchors.left: workspaces.right
+    anchors.leftMargin: Theme.spacing
   }
 
   DynamicIsland {

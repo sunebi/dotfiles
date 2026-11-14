@@ -35,6 +35,13 @@ Singleton {
   // The size the picked cursor theme is set with, the same as XCURSOR_SIZE in the hypr env
   readonly property int cursorSize: 24
 
+  // Resources
+  readonly property int resourceRefreshMs: 2000
+  // A ring turns red from this share of the CPU, the RAM or the GPU
+  readonly property real resourceHighLoad: 0.85
+  // The load of an amdgpu card, the card number differs between machines
+  readonly property string gpuBusyPath: "/sys/class/drm/card1/device/gpu_busy_percent"
+
   // Date and time
   readonly property string timeFormat: "hh:mm"
   readonly property string trayClockFormat: "ddd MMM d  hh:mm"
