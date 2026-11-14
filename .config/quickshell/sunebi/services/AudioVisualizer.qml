@@ -62,9 +62,13 @@ Singleton {
       const application = node.name.toLowerCase();
       return application !== "" && (application === desktopEntry || identity.includes(application));
     });
-    // The tab of the playing page names its stream after the page, which the player reports as its title
+    // The tab of the playing page names its stream after the page. YouTube reports that name as the title, Twitch reports the title of the broadcast instead, and only the channel, which the player reports as the artist, is in the name of the tab
     const title = player.trackTitle ?? "";
-    const named = title !== "" ? candidates.filter(node => (node.properties["media.name"] ?? "").includes(title)) : [];
+    const artist = player.trackArtist ?? "";
+    const named = candidates.filter(node => {
+      const tabName = node.properties["media.name"] ?? "";
+      return (title !== "" && tabName.includes(title)) || (artist !== "" && tabName.includes(artist));
+    });
     const pool = named.length > 0 ? named : candidates;
     if (pool.length === 0)
       return "";
