@@ -5,9 +5,6 @@ import Quickshell
 import QtQuick
 
 Singleton {
-  // Appearance
-  readonly property bool darkTheme: true
-
   // Volume
   readonly property real volumeMax: 1
   readonly property real volumeStep: 0.02
