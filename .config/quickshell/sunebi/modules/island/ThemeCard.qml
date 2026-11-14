@@ -1,6 +1,7 @@
 import QtQuick
 
 import qs
+import qs.components
 import qs.services
 
 // The card of a theme in the carousel: its background, the look of its text and, on a tile of its secondary color, the colors that tell it apart. The carousel gives the row of the model and whether the card is selected to the Loader this sits in. The outline is the border color of the theme itself, the selected card wears a ring of its primary color

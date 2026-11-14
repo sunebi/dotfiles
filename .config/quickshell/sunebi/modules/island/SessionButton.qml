@@ -2,6 +2,7 @@ import QtQuick
 import QtQuick.Shapes
 
 import qs
+import qs.components
 
 // A round button of the session menu. A button that has to be held shows how far the hold is in a ring around it and runs only when the ring is full
 Item {

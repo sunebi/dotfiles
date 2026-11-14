@@ -4,7 +4,8 @@ import Quickshell.Wayland
 import QtQuick
 
 import qs
-import qs.services
+import qs.modules.island
+import qs.modules.resources
 
 PanelWindow {
   id: root

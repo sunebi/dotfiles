@@ -2,7 +2,7 @@ import Quickshell.Widgets
 import QtQuick
 
 import qs
-import qs.services
+import qs.components
 
 // The island's content while it is open to choose one of many pictures, the wallpapers or the cursor themes, or one of the color themes, which draw their own cards. The model has a filePath role with the picture of every item. Only the selected card is full size, no outlines. The strip stops at its ends instead of centering the first and the last card, so there is no empty space beside it
 FocusScope {

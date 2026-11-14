@@ -1,6 +1,7 @@
 import QtQuick
 
 import qs
+import qs.components
 import qs.services
 
 // The glyphs are SF Symbols private use characters of SF Pro Text: cpu, memorychip and display (SF Symbols has no gpu symbol)

@@ -3,6 +3,7 @@ pragma ComponentBehavior: Bound
 import QtQuick
 
 import qs
+import qs.components
 import qs.services
 
 // The island's content while it is open to the session menu: the uptime on top, the buttons in a row and the name of the one in focus below

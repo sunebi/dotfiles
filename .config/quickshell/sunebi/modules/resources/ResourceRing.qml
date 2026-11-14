@@ -2,6 +2,7 @@ import QtQuick
 import QtQuick.Shapes
 
 import qs
+import qs.components
 
 // A ring that fills clockwise from the top with the load, the symbol of the resource sits inside. The fill is primary and the symbol gray until the load is high, then both are red
 Item {

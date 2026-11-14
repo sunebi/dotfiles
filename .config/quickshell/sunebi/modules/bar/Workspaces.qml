@@ -4,6 +4,7 @@ import Quickshell.Hyprland
 import QtQuick
 
 import qs
+import qs.components
 
 Capsule {
   id: root
