@@ -4,7 +4,7 @@ import QtQuick
 import qs
 import qs.components
 
-// The island's content while it is open to choose one of many pictures, the wallpapers or the cursor themes, or one of the color themes, which draw their own cards. The model has a filePath role with the picture of every item. Only the selected card is full size, no outlines. The strip stops at its ends instead of centering the first and the last card, so there is no empty space beside it
+// The island's content while it is open to choose one of many pictures, the wallpapers, or one of the color themes, which draw their own cards. The model has a filePath role with the picture of every item. Only the selected card is full size, no outlines. The strip stops at its ends instead of centering the first and the last card, so there is no empty space beside it
 FocusScope {
   id: root
 
@@ -13,8 +13,6 @@ FocusScope {
   property var nameAt: index => ""
   // The item that is selected when the carousel opens
   property int startIndex: 0
-  property int fillMode: Image.PreserveAspectCrop
-  property int imagePadding: 0
   // Draws the card instead of the picture. It sits in a Loader whose row property is the row of the model and whose selected property says whether the card is the selected one
   property Component cardContent: null
   property bool active: false
@@ -135,9 +133,8 @@ FocusScope {
 
             Image {
               anchors.fill: parent
-              anchors.margins: root.imagePadding
               asynchronous: true
-              fillMode: root.fillMode
+              fillMode: Image.PreserveAspectCrop
               // A fixed size, so the decoder does not run again while the card grows
               sourceSize.height: Theme.islandPickerSelectedCardWidth * 9 / 16 * 2
               // Only the cards around the selected one are loaded, a folder can hold many more than are ever shown

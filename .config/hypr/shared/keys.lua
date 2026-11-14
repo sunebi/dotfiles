@@ -34,7 +34,6 @@ return {
 
   wallpaperPicker = "SUPER + CTRL + T",
   wallpaperRandom = "SUPER + CTRL + ALT + T",
-  cursorPicker = "SUPER + CTRL + Y",
   themePicker = "SUPER + CTRL + P",
   -- Three modifiers keep a stray press from flashing a light theme at night; no ALT, because ALT + SHIFT switches the layout
   themeToggle = "SUPER + CTRL + SHIFT + D",

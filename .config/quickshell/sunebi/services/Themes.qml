@@ -5,8 +5,6 @@ import Quickshell
 import Quickshell.Io
 import QtQuick
 
-import qs.services.cursor
-
 // The color themes of the shell, one JSON file each in the themes directory. The chosen one is kept in the shell state directory, Colors reads its colors
 Singleton {
   id: root
@@ -117,7 +115,6 @@ Singleton {
 
     function toggle(): void {
       Wallpaper.pickerOpen = false;
-      CursorTheme.pickerOpen = false;
       SessionMenu.open = false;
       root.refresh();
       root.pickerOpen = !root.pickerOpen && themes.count > 0;

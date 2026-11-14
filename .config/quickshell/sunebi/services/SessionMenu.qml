@@ -5,8 +5,6 @@ import Quickshell
 import Quickshell.Io
 import QtQuick
 
-import qs.services.cursor
-
 Singleton {
   id: root
 
@@ -58,7 +56,6 @@ Singleton {
 
     function toggle(): void {
       Wallpaper.pickerOpen = false;
-      CursorTheme.pickerOpen = false;
       Themes.pickerOpen = false;
       root.open = !root.open;
     }

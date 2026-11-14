@@ -7,7 +7,6 @@ import Qt.labs.folderlistmodel
 import QtQuick
 
 import qs
-import qs.services.cursor
 
 Singleton {
   id: root
@@ -85,7 +84,6 @@ Singleton {
 
     function toggle(): void {
       SessionMenu.open = false;
-      CursorTheme.pickerOpen = false;
       Themes.pickerOpen = false;
       root.pickerOpen = !root.pickerOpen && files.count > 0;
     }

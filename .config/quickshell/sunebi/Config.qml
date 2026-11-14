@@ -31,10 +31,6 @@ Singleton {
   // How long the button of a reboot or a shutdown is held before it runs
   readonly property int sessionHoldMs: 1200
 
-  // Cursor
-  // The size the picked cursor theme is set with, the same as XCURSOR_SIZE in the hypr env
-  readonly property int cursorSize: 24
-
   // Resources
   readonly property int resourceRefreshMs: 2000
   // A ring turns red from this share of the CPU, the RAM or the GPU
